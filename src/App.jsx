@@ -56,6 +56,7 @@ const experience = [
   ['MoneyBook', 'Senior Product Designer', '2023'],
   ['Moment Pet Wellness', 'Product Designer', '2022 — 2023'],
   ['Zoomo Space', 'UI/UX Designer', '2020 — 2022'],
+  ['Lion Travel', 'Web Designer', 'Oct 2018 — May 2020'],
   ['TCY Cosmetics', 'Visual Designer', 'Apr 2016 — Oct 2018'],
   ['Taiwandigest', 'Art Editor', 'Apr 2015 — Apr 2016'],
 ]
