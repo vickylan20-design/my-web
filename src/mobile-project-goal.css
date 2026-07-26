@@ -1,0 +1,26 @@
+.detail-goal-split{display:grid;grid-template-columns:1.18fr 1fr;height:510px;margin-top:70px;overflow:hidden}
+.detail-goal-split>.detail-hero{height:100%;margin:0;aspect-ratio:auto}
+.detail-goal-split>.detail-mobile-goal{display:flex;box-sizing:border-box;flex-direction:column;justify-content:center;gap:38px;padding:56px;background:#165DFB;color:#fff}
+.detail-goal-split>.detail-mobile-goal small{font-size:16px;font-weight:500}
+.detail-goal-split>.detail-mobile-goal strong{font-size:clamp(35px,3.2vw,52px);line-height:1.22;font-weight:400;letter-spacing:-.03em}
+@media (max-width:800px){
+  .detail-goal-split{display:block;height:auto;margin-top:70px;overflow:visible}
+  .detail-goal-split>.detail-hero{height:auto!important;aspect-ratio:1.3!important;margin:0}
+  .project-detail .detail-hero--single,.project-detail .cms-hero__image,.project-detail .member-case__hero{height:auto!important;aspect-ratio:1.3!important;margin-bottom:0}
+  .detail-goal-split>.detail-mobile-goal{display:flex;min-height:0;aspect-ratio:1.55;box-sizing:border-box;flex-direction:column;justify-content:center;gap:32px;padding:52px 14%;background:#165DFB;color:#fff}
+  .detail-mobile-goal small{font-size:16px;font-weight:500}
+  .detail-mobile-goal strong{font-size:clamp(36px,8.5vw,52px);line-height:1.25;font-weight:400;letter-spacing:-.03em}
+  .project-detail .detail-mobile-goal + .detail-section{padding-top:100px}
+  .chatbot-case__goal{grid-template-columns:1fr}
+  .chatbot-case__goal>.chatbot-case__goal-image{height:auto;aspect-ratio:1.3}
+  .chatbot-case__goal>.chatbot-case__goal-image>img{width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center}
+  .chatbot-case__goal>div:last-child{min-height:0;aspect-ratio:1.55;box-sizing:border-box;padding:52px 14%;gap:32px}
+  .chatbot-case__goal small{font-size:16px;margin:0}
+  .chatbot-case__goal strong{font-size:clamp(36px,8.5vw,52px);line-height:1.25}
+
+  .project-detail .decisions article{grid-template-columns:1fr;grid-template-rows:auto;row-gap:20px;padding:42px 0}
+  .project-detail .decisions article>span,.project-detail .decisions article>h3,.project-detail .decisions article>div{grid-column:1;grid-row:auto}
+  .project-detail .decisions article>span{font-size:58px}
+  .project-detail .decisions article:nth-child(2)>div,.project-detail .decision-copy-with-image{display:block}
+  .project-detail .decision-copy-with-image img{display:block;width:100%;height:auto;margin-top:24px}
+}

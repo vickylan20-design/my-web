@@ -1,0 +1,6 @@
+/* Reserve a fixed plot area so tall bars never overlap the research copy. */
+.chatbot-chart__bars article > div { height: calc(var(--bar-height) * 290px); }
+
+@media (max-width: 800px) {
+  .chatbot-chart__bars article > div { height: calc(var(--bar-height) * 213px); }
+}

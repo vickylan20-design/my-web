@@ -1,0 +1,10 @@
+/* Keep the large serial number visually independent from the reading column. */
+@media (min-width: 1601px) {
+  .chatbot-case__findings article { grid-template-columns: 430px minmax(420px, 1fr) 630px; gap: 40px; }
+  .chatbot-case__findings img { max-height: none; height: 430px; object-fit: contain; object-position: right center; }
+}
+
+@media (min-width: 801px) and (max-width: 1600px) {
+  .chatbot-case__findings article { grid-template-columns: 300px minmax(300px, 1fr) 360px; gap: 32px; }
+  .chatbot-case__findings img { max-height: 300px; }
+}

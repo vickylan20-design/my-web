@@ -1,0 +1,33 @@
+/* Shared case-study hierarchy for the CMS project. */
+.cms-detail .cms-hero { padding-top: 110px; }
+.cms-detail .cms-hero h1 { font-size: clamp(70px, 8.95vw, 129px); line-height: 1.15; }
+.cms-detail .detail-intro__copy { margin-top: 72px; }
+.cms-detail .cms-hero__image { height: 510px; margin-top: 70px; aspect-ratio: auto; }
+.cms-detail .cms-hero__image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.cms-detail .cms-section { padding-top: 130px; }
+.cms-detail .cms-section > h2,
+.cms-detail .cms-result h2 { margin: 0; color: var(--blue); font-size: clamp(54px, 4.64vw, 67px); line-height: 1.08; letter-spacing: -.03em; font-weight: 500; }
+.cms-detail .cms-content-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 80px; align-items: center; }
+.cms-detail .cms-content-split > div > p { margin: 0 0 30px; font-size: 18px; line-height: 1.8; }
+.cms-detail .cms-placeholder { min-height: 390px; }
+.cms-detail .cms-section-lead { max-width: 900px; margin: 32px 0 60px; font-size: 18px; line-height: 1.8; }
+.cms-detail .cms-workflow__grid { margin: 0; grid-template-columns: repeat(3, 1fr); }
+.cms-detail .cms-workflow__grid article { min-height: 260px; }
+.cms-detail .cms-workflow-map { margin: 48px 0 0; min-height: 420px; }
+.cms-detail .cms-architecture__layout { margin: 80px 0 0; grid-template-columns: 1fr 1fr; gap: 80px; }
+.cms-detail .cms-architecture__layout p { font-size: 18px; }
+.cms-detail .cms-design__gallery { margin-top: 70px; }
+.cms-detail .cms-result { padding-top: 170px; padding-bottom: 170px; }
+
+@media (max-width: 800px) {
+  .cms-detail .cms-hero__image { height: 300px; }
+  .cms-detail .cms-content-split,
+  .cms-detail .cms-architecture__layout { display: block; margin-top: 45px; }
+  .cms-detail .cms-content-split > .cms-placeholder,
+  .cms-detail .cms-architecture__layout > .cms-placeholder { margin-bottom: 35px; }
+  .cms-detail .cms-workflow__grid { display: block; }
+  .cms-detail .cms-workflow__grid article { padding: 28px 0; }
+  .cms-detail .cms-workflow-map,
+  .cms-detail .cms-design__gallery { margin-top: 35px; }
+}

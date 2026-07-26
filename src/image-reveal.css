@@ -1,0 +1,5 @@
+[data-image-reveal]{position:relative;isolation:isolate;overflow:hidden;background:#165DFB}
+[data-image-reveal] img{display:block;position:relative;z-index:1}
+[data-image-reveal]::after{position:absolute;z-index:2;inset:0;background:#165DFB;content:"";transform:translateX(0);transition:transform 1.05s cubic-bezier(.22,1,.36,1);will-change:transform;pointer-events:none}
+[data-image-reveal].is-visible::after{transform:translateX(101%)}
+@media (prefers-reduced-motion:reduce){[data-image-reveal]::after{display:none}}
