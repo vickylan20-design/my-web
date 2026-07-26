@@ -15,7 +15,7 @@ const findings = [
 ]
 
 const chartData = [
-  ['完整健康問題', 42], ['模糊的\n健康描述', 31], ['只輸入健康\n關鍵字（症狀）', 23], ['與健康無相關\n文字', 4],
+  ['完整健康問題', 42], ['模糊健康描述', 31], ['只輸入健康\n關鍵字（症狀）', 23], ['與健康無相關\n文字', 4],
 ]
 
 export default function HealthChatbotDetail() {
@@ -31,7 +31,7 @@ export default function HealthChatbotDetail() {
 
     <section className="detail-section chatbot-case__research">
       <h2>Research</h2>
-      <div className="chatbot-case__research-grid"><h3>Data</h3><div><p>為了了解 AI Chatbot 使用率偏低的原因，我先分析上線後的提問紀錄，觀察使用者輸入內容的完整程度與健康相關性，從而找出影響 AI 使用體驗的關鍵因素。</p><div className="chatbot-chart"><div className="chatbot-chart__scale"><span>40%</span><span>30%</span><span>20%</span><span>10%</span><span>0%</span></div><div className="chatbot-chart__bars">{chartData.map(([label,value],index)=><article key={label}><div className={`${index === 0 ? 'is-primary ' : ''}${index === 3 ? 'is-muted' : ''}`} style={{'--bar-height': value / 45}}><b>{value}%</b></div><small>{label}</small></article>)}</div></div><div className="chatbot-table"><div><b>類別</b><b>說明</b><b>事件數</b><b>佔比</b></div><div><span>完整健康問題</span><span>使用者以完整句子描述症狀、情境或直接提出問題。</span><span>8,482</span><span>41.7%</span></div><div><span>健康描述</span><span>描述身體狀況，但尚未形成明確問題，例如「長期壓力大」、「一直睡不好」。</span><span>6,282</span><span>30.9%</span></div><div><span>健康主題／症狀關鍵字</span><span>僅輸入疾病或症狀名稱，例如「頭痛」、「糖尿病」、「耳鳴」。</span><span>4,683</span><span>23.0%</span></div><div><span>非健康相關文字</span><span>打招呼、感謝、聊天或與健康無關內容，例如「你好」、「謝謝」、「今天颱風假嗎」。</span><span>791</span><span>3.9%</span></div><div><span>空白輸入</span><span>未輸入任何內容。</span><span>112</span><span>0.6%</span></div></div></div></div>
+      <div className="chatbot-case__research-grid"><h3>Data</h3><div><p>為了了解 AI Chatbot 使用率偏低的原因，我先分析上線後的提問紀錄，觀察使用者輸入內容的完整程度與健康相關性，從而找出影響 AI 使用體驗的關鍵因素。</p><div className="chatbot-chart"><div className="chatbot-chart__scale"><span>40%</span><span>30%</span><span>20%</span><span>10%</span><span>0%</span></div><div className="chatbot-chart__bars">{chartData.map(([label,value],index)=><article key={label}><div className={`${index === 0 ? 'is-primary ' : ''}${index === 3 ? 'is-muted' : ''}`} style={{'--bar-height': value / 45}}><b>{value}%</b></div><small>{label}</small></article>)}</div></div><div className="chatbot-table"><div><b>類別</b><b>說明</b><b>事件數</b><b>佔比</b></div><div><span>完整健康問題</span><span>使用者以完整句子描述症狀、情境或直接提出問題。</span><span>8,482</span><span>41.7%</span></div><div><span>模糊健康描述</span><span>描述身體狀況，但尚未形成明確問題，例如「長期壓力大」、「一直睡不好」。</span><span>6,282</span><span>30.9%</span></div><div><span>健康主題／症狀關鍵字</span><span>僅輸入疾病或症狀名稱，例如「頭痛」、「糖尿病」、「耳鳴」。</span><span>4,683</span><span>23.0%</span></div><div><span>非健康相關文字</span><span>打招呼、感謝、聊天或與健康無關內容，例如「你好」、「謝謝」、「今天颱風假嗎」。</span><span>791</span><span>3.9%</span></div><div><span>空白輸入</span><span>未輸入任何內容。</span><span>112</span><span>0.6%</span></div></div></div></div>
     </section>
 
     <section className="detail-section chatbot-case__synthesis">
