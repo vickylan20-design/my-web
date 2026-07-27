@@ -285,7 +285,7 @@ function App() {
             <div className="contact-line contact-line--to"><label>To</label><span>vickylan20@gmail.com</span><button type="button" onClick={copyEmail}>{copyLabel}</button></div>
             <div className="contact-line"><label htmlFor="from">From</label><input id="from" name="from" type="email" placeholder="you@example.com" /></div>
             <div className="contact-line"><label htmlFor="subject">Subject</label><input id="subject" name="subject" /></div>
-            <div className="contact-line"><label htmlFor="message">Message</label><textarea id="message" name="message" rows="2" /></div>
+            <div className="contact-line contact-line--message"><label htmlFor="message">Message</label><textarea id="message" name="message" rows="1" onInput={(event) => { const field = event.currentTarget; field.style.height = 'auto'; field.style.height = `${field.scrollHeight}px` }} /></div>
             <button className="send-button" type="submit">Send</button>
           </form>
         </section>

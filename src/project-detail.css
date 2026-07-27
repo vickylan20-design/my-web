@@ -42,7 +42,7 @@
 .decisions p{font-size:16px;line-height:1.8;font-weight:400;letter-spacing:.005em}
 .decisions b{font-weight:500}.achievement h3{font-size:34px;line-height:1.5;font-weight:500;letter-spacing:0}
 .achievement p{font-size:18px;line-height:1.8;font-weight:400;letter-spacing:.005em}.achievement p b{font-weight:500}
-@media(max-width:700px){.detail-intro h1{font-size:54px;line-height:1.08}.detail-intro__copy>p{font-size:16px}.detail-section h2,.achievement h2{font-size:48px}.data-chart{width:100%;height:285px;padding:0 6px 55px}.data-chart>img{height:230px}.data-chart__item{height:230px}.data-chart__item i{width:28px;max-height:205px}.data-chart__item span{top:240px;width:58px;font-size:9px}.decisions h3{font-size:21px}.decisions p,.synthesis-lead,.achievement p{font-size:15px}}
+@media(max-width:700px){.detail-intro h1{font-size:54px;line-height:1.08}.detail-intro__copy>p{font-size:16px}.detail-section h2,.achievement h2{font-size:48px}.achievement{padding-top:80px;padding-bottom:120px}.achievement>div{margin-top:40px}.achievement h3{margin-bottom:40px}.achievement p{margin-bottom:0}.data-chart{width:100%;height:285px;padding:0 6px 55px}.data-chart>img{height:230px}.data-chart__item{height:230px}.data-chart__item i{width:28px;max-height:205px}.data-chart__item span{top:240px;width:58px;font-size:9px}.decisions h3{font-size:21px}.decisions p,.synthesis-lead,.achievement p{font-size:15px}}
 
 .data-chart{position:relative;width:min(100%,920.5px);height:355px;margin-left:auto;padding:0;display:grid;grid-template-columns:54px 1fr;align-items:start}
 .data-chart__scale{height:289px;padding:26px 13px 0 0;display:flex;flex-direction:column;justify-content:space-between;color:#565b65;font-size:13px;line-height:1}
@@ -71,7 +71,7 @@
 .research>.interviews h4 small{margin-left:10px;color:#777}
 .research>h3:nth-of-type(2),.research>.data-chart{margin-top:110px}
 .synthesis>h2 br{display:none}
-@media(max-width:700px){.research{display:block}.research>h2{margin-bottom:75px}.research>h3{margin-bottom:35px}.research>.interviews article{gap:20px}.research>h3:nth-of-type(2),.research>.data-chart{margin-top:70px}}
+@media(max-width:700px){.research{display:block}.research>h2{margin-bottom:75px}.research>h3{margin-bottom:35px}.research>.interviews article{gap:20px}.research>.interviews h4 small{display:block;margin:4px 0 0}.research>h3:nth-of-type(2),.research>.data-chart{margin-top:70px}}
 
 .decisions{margin-top:0;border-bottom:1px solid #b8b8b8}
 .decisions article{grid-template-columns:90px 420px minmax(0,1fr);column-gap:38px;padding:70px 0 76px;align-items:start}

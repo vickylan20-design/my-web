@@ -71,7 +71,7 @@ export default function StructureProjectDetail() {
         <div className="cms-redesign__type-sample">
           <h3>中文使用 Noto Sans TC / 英數使用 Geist。</h3>
           <h4>Size</h4>
-          <div className="cms-redesign__type-table">{typeSizes.map(([name, value, size]) => <div key={name}><span>{name}</span><small>{value}</small><b style={{ fontSize: size }}>{typographySample}</b></div>)}</div>
+          <div className="cms-redesign__type-table cms-redesign__type-table--sizes">{typeSizes.map(([name, value, size]) => <div key={name}><span>{name}</span><small>{value}</small><b style={{ '--cms-sample-size': `${size}px` }}>{typographySample}</b></div>)}</div>
           <h4>Weight</h4>
           <div className="cms-redesign__type-table">{typeWeights.map(([name, value, weight, style]) => <div key={name}><span>{name}</span><small>{value}</small><b style={{ fontSize: 12, fontWeight: weight, ...style }}>{typographyWeightSample}</b></div>)}</div>
         </div>
