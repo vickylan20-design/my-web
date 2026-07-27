@@ -12,6 +12,13 @@ const capabilityItems = [
   { number: '04', name: 'Strategize', caption: '（平衡商業需求與產品體驗）', project: 'TVBS Member System', title: '介面體驗優化＆商業結合', scope: 'Product Strategy, Service Design', points: ['盤點用戶使用流程中的痛點', '優化產品介面和使用體驗', '建立一致的跨品牌登入體驗', '創造可兼顧商業需求的彈性設計'], outcome: 'Redesign 上線、會員產品 Roadmap 建立', image: '/assets/detail/member-cover.jpg', alt: '會員登入情境畫面' },
 ]
 
+const capabilityItemsEn = [
+  { title: 'Group Chat Experience Optimization', points: ['Gathered user feedback and conducted interviews', 'Analyzed product data and user behavior', 'Defined product problems and design goals', 'Rapidly iterated the service design and experience'], outcome: 'Overall usage +5% · Room activation +11%', alt: 'Moodii social app group chat optimization' },
+  { title: 'CMS Redesign', points: ['Observed user habits and needs', 'Restructured information architecture and workflows', 'Built consistent UI and interaction patterns', 'Created an extensible information architecture'], outcome: 'New CMS scheduled to launch in Aug 2026', alt: 'TVBS News CMS editorial system' },
+  { title: 'AI Chatbot Experience Optimization', points: ['Analyzed usage data and question content', 'Conducted interviews and prototype tests', 'Designed new service scenarios and experiences', 'Tracked data and improved question quality'], outcome: 'Health-platform engagement reached 88%', alt: 'Health 2.0 AI Chatbot optimization' },
+  { title: 'Experience Optimization & Business Integration', points: ['Mapped pain points across the user journey', 'Improved the product interface and experience', 'Created a consistent cross-brand login experience', 'Designed a flexible model that supports business needs'], outcome: 'Redesign launched · Membership roadmap established', alt: 'Member login experience' },
+]
+
 const workItems = [
   { title: 'TVBS News CMS', type: 'CMS Redesign, Design System', year: '2026', company: 'TVBS', image: '/assets/project/tvbs-news-cms.png', detail: '重整近二十年的新聞內容工作流程與設計系統。', detailSlug: 'news-cms' },
   { title: 'TVBS Member System', type: 'System Redesign, Service Design', year: '2025', company: 'TVBS', image: '/assets/detail/member-cover.jpg', detail: '將五大品牌的零散登入需求整合成長期會員策略。', detailSlug: 'member-system' },
@@ -20,6 +27,16 @@ const workItems = [
   { title: 'Moment APP', type: 'App Redesign, User Research', year: '2023', company: 'Moment Pet Wellness', image: '/assets/project/moment-pet.png', detail: '讓寵物健康資訊更容易被理解與採取行動。' },
   { title: 'Moodii APP', type: 'App 0–1 Product Design, User Research', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/moodii.png', detail: '從 0–1 打造一個能安心表達情緒的社交產品。', externalUrl: '/assets/project/Moodii_UIUX.jpg' },
   { title: 'ShapeX APP', type: 'App 0–1 Product Design', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/shapex.png', detail: '把動作辨識技術轉化為可理解的運動回饋。', externalUrl: '/assets/project/ShapeX_UIUX.jpg' },
+]
+
+const workDetailsEn = [
+  'Rebuilt two decades of editorial workflows and the design system.',
+  'Unified fragmented login needs across five brands into a long-term membership strategy.',
+  'Created a clear, consistent, and extensible health-content experience.',
+  'Explored how AI can help people find the health answers they actually need.',
+  'Made pet-health information easier to understand and act on.',
+  'Built a safe social product from 0 to 1 for expressing emotions.',
+  'Turned motion-recognition technology into understandable exercise feedback.',
 ]
 
 const heroRoles = [
@@ -103,12 +120,25 @@ function Capability({ item, onOpen }) {
 function App() {
   const projectSlug = new URLSearchParams(window.location.search).get('project')
   const [isDetail, setIsDetail] = useState(() => Boolean(projectSlug))
-  const [menuOpen, setMenuOpen] = useState(false)
   const [navVisible, setNavVisible] = useState(true)
   const [activeWork, setActiveWork] = useState(null)
   const [copyLabel, setCopyLabel] = useState('Copy')
+  const [language, setLanguage] = useState(() => window.localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'zh')
   const workRef = useRef(null)
   const lastScrollY = useRef(0)
+  const isEnglish = language === 'en'
+  const localizedCapabilityItems = capabilityItems.map((item, index) => isEnglish ? { ...item, ...capabilityItemsEn[index], caption: '' } : item)
+  const localizedWorkItems = workItems.map((item, index) => isEnglish ? { ...item, detail: workDetailsEn[index] } : item)
+
+  const changeLanguage = (nextLanguage) => {
+    setLanguage(nextLanguage)
+    window.localStorage.setItem('portfolio-language', nextLanguage)
+    document.documentElement.lang = nextLanguage === 'en' ? 'en' : 'zh-Hant'
+  }
+
+  useEffect(() => {
+    document.documentElement.lang = isEnglish ? 'en' : 'zh-Hant'
+  }, [isEnglish])
 
   useEffect(() => {
     const revealImage = (node) => {
@@ -156,7 +186,7 @@ function App() {
       const currentScrollY = Math.max(window.scrollY, 0)
       const difference = currentScrollY - lastScrollY.current
 
-      if (menuOpen || currentScrollY < 64) {
+      if (currentScrollY < 64) {
         setNavVisible(true)
       } else if (difference > 8) {
         setNavVisible(false)
@@ -178,12 +208,12 @@ function App() {
     lastScrollY.current = window.scrollY
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [menuOpen])
+  }, [])
 
   const copyEmail = async () => {
     await navigator.clipboard.writeText('vickylan20@gmail.com')
-    setCopyLabel('Copied')
-    window.setTimeout(() => setCopyLabel('Copy'), 1400)
+    setCopyLabel(isEnglish ? 'Copied' : '已複製')
+    window.setTimeout(() => setCopyLabel(isEnglish ? 'Copy' : '複製'), 1400)
   }
 
   const movePreview = (event) => {
@@ -211,7 +241,8 @@ function App() {
       window.open(item.externalUrl, '_blank', 'noopener,noreferrer')
       return
     }
-    setActiveWork((current) => current === workItems.indexOf(item) ? null : workItems.indexOf(item))
+    const itemIndex = localizedWorkItems.indexOf(item)
+    setActiveWork((current) => current === itemIndex ? null : itemIndex)
   }
 
   useEffect(() => { const pop = () => setIsDetail(new URLSearchParams(window.location.search).get('project') === 'group-chat'); window.addEventListener('popstate', pop); return () => window.removeEventListener('popstate', pop) }, [])
@@ -232,16 +263,10 @@ function App() {
         <nav className="site-links" aria-label="Main navigation">
           <a href="#about" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#about')}}}>About</a><a href="#selected-work" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#selected-work')}}}>Selected Work</a><a href="#work-experience" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#work-experience')}}}>Experience</a>
         </nav>
-        <button className="menu-button" type="button" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? 'Close' : 'Menu'}</button>
+        <div className="language" role="group" aria-label="Language"><button type="button" className={language === 'zh' ? 'is-active' : ''} onClick={() => changeLanguage('zh')} aria-pressed={language === 'zh'}>ZH</button><button type="button" className={language === 'en' ? 'is-active' : ''} onClick={() => changeLanguage('en')} aria-pressed={language === 'en'}>EN</button></div>
       </header>
 
-      <div className={`mobile-nav ${menuOpen ? 'is-open' : ''}`}>
-        <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-        <a href="#selected-work" onClick={() => setMenuOpen(false)}>Selected Work</a>
-        <a href="#work-experience" onClick={() => setMenuOpen(false)}>Experience</a>
-      </div>
-
-      {isDetail ? (projectSlug === 'news-cms' ? <StructureProjectDetail /> : projectSlug === 'member-system' ? <MemberSystemDetail /> : projectSlug === 'health-chatbot' ? <HealthChatbotDetail /> : <ProjectDetail />) : <main>
+      {isDetail ? (projectSlug === 'news-cms' ? <StructureProjectDetail language={language} /> : projectSlug === 'member-system' ? <MemberSystemDetail language={language} /> : projectSlug === 'health-chatbot' ? <HealthChatbotDetail language={language} /> : <ProjectDetail language={language} />) : <main>
         <div className="portfolio-stage">
           <div className="portfolio-stage__glow" aria-hidden="true"><img src="/assets/figma/gradient-ellipse.svg" alt="" /></div>
           <div className="portfolio-stage__veil" aria-hidden="true" />
@@ -251,19 +276,19 @@ function App() {
           </section>
 
           <section className="capabilities" id="selected-work">
-            {capabilityItems.map((item) => <Capability item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
+            {localizedCapabilityItems.map((item) => <Capability item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
           </section>
         </div>
 
         <section className="work" id="work-experience" ref={workRef} onPointerMove={movePreview} onPointerLeave={() => setActiveWork(null)}>
           <h2 data-reveal>Work / Experience</h2>
           <div className="work-list" data-reveal>
-            {workItems.map((item, index) => {
+            {localizedWorkItems.map((item, index) => {
               const active = activeWork === index
               const opensDestination = Boolean(item.detailSlug || item.externalUrl)
               return (
                 <article className={`work-row ${active ? 'is-active' : ''} ${opensDestination ? 'work-row--link' : ''}`} key={item.title} onPointerEnter={() => setActiveWork(index)}>
-                  <button type="button" aria-expanded={opensDestination ? undefined : active} aria-label={opensDestination ? `開啟 ${item.title}` : undefined} onClick={() => openWorkItem(item)}>
+                  <button type="button" aria-expanded={opensDestination ? undefined : active} aria-label={opensDestination ? `${isEnglish ? 'Open' : '開啟'} ${item.title}` : undefined} onClick={() => openWorkItem(item)}>
                     <span className="work-row__main"><strong>{item.title}</strong><small>{item.type}</small><em>{item.detail}</em></span>
                     <span className="work-row__meta"><b>{item.year}</b><small>{item.company}</small></span>
                     <span className="work-row__toggle" aria-hidden="true">{active ? '−' : '+'}</span>
@@ -282,7 +307,7 @@ function App() {
             const data = new FormData(event.currentTarget)
             window.location.href = `mailto:vickylan20@gmail.com?subject=${encodeURIComponent(data.get('subject') || '')}&body=${encodeURIComponent(data.get('message') || '')}`
           }}>
-            <div className="contact-line contact-line--to"><label>To</label><span>vickylan20@gmail.com</span><button type="button" onClick={copyEmail}>{copyLabel}</button></div>
+            <div className="contact-line contact-line--to"><label>To</label><span>vickylan20@gmail.com</span><button type="button" onClick={copyEmail}>{copyLabel === 'Copy' ? 'Copy' : copyLabel}</button></div>
             <div className="contact-line"><label htmlFor="from">From</label><input id="from" name="from" type="email" placeholder="you@example.com" /></div>
             <div className="contact-line"><label htmlFor="subject">Subject</label><input id="subject" name="subject" /></div>
             <div className="contact-line contact-line--message"><label htmlFor="message">Message</label><textarea id="message" name="message" rows="1" onInput={(event) => { const field = event.currentTarget; field.style.height = 'auto'; field.style.height = `${field.scrollHeight}px` }} /></div>
@@ -292,7 +317,7 @@ function App() {
 
         <SiteFooter />
       </main>}
-      <button className="back-to-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top">TOP</button>
+      <button className="back-to-top" type="button" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label={isEnglish ? 'Back to top' : '回到頂端'}>TOP</button>
     </div>
   )
 }
