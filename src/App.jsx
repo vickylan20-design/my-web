@@ -247,7 +247,7 @@ function App() {
           <div className="portfolio-stage__veil" aria-hidden="true" />
           <section className="hero" id="about">
             <HeroRoleCarousel />
-            <p data-reveal>I'm Lan, a Senior Product Designer designing digital products across healthcare, fintech, wellness, media, and AI.</p>
+            <p data-reveal>I'm Lan, a Senior Product Designer designing digital products across healthcare, wellness, media, and AI.</p>
           </section>
 
           <section className="capabilities" id="selected-work">
