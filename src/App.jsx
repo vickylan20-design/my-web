@@ -122,7 +122,7 @@ function App() {
   const [isDetail, setIsDetail] = useState(() => Boolean(projectSlug))
   const [navVisible, setNavVisible] = useState(true)
   const [activeWork, setActiveWork] = useState(null)
-  const [copyLabel, setCopyLabel] = useState('Copy')
+  const [emailCopied, setEmailCopied] = useState(false)
   const [language, setLanguage] = useState(() => window.localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'zh')
   const workRef = useRef(null)
   const lastScrollY = useRef(0)
@@ -210,12 +210,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText('vickylan20@gmail.com')
-    setCopyLabel(isEnglish ? 'Copied' : '已複製')
-    window.setTimeout(() => setCopyLabel(isEnglish ? 'Copy' : '複製'), 1400)
-  }
-
   const movePreview = (event) => {
     if (!workRef.current) return
     const list = workRef.current.querySelector('.work-list')
@@ -302,17 +296,11 @@ function App() {
 
         <section className="contact" id="contact">
           <h2 data-reveal>Contact</h2>
-          <form className="contact-card" data-reveal onSubmit={(event) => {
-            event.preventDefault()
-            const data = new FormData(event.currentTarget)
-            window.location.href = `mailto:vickylan20@gmail.com?subject=${encodeURIComponent(data.get('subject') || '')}&body=${encodeURIComponent(data.get('message') || '')}`
-          }}>
-            <div className="contact-line contact-line--to"><label>To</label><span>vickylan20@gmail.com</span><button type="button" onClick={copyEmail}>{copyLabel === 'Copy' ? 'Copy' : copyLabel}</button></div>
-            <div className="contact-line"><label htmlFor="from">From</label><input id="from" name="from" type="email" placeholder="you@example.com" /></div>
-            <div className="contact-line"><label htmlFor="subject">Subject</label><input id="subject" name="subject" /></div>
-            <div className="contact-line contact-line--message"><label htmlFor="message">Message</label><textarea id="message" name="message" rows="1" onInput={(event) => { const field = event.currentTarget; field.style.height = 'auto'; field.style.height = `${field.scrollHeight}px` }} /></div>
-            <button className="send-button" type="submit">Send</button>
-          </form>
+          <button className="contact-email" type="button" data-reveal aria-label={isEnglish ? 'Copy email address' : '複製電子信箱'} onClick={async () => {
+            await navigator.clipboard.writeText('vickylan20@gmail.com')
+            setEmailCopied(true)
+            window.setTimeout(() => setEmailCopied(false), 1400)
+          }}>vickylan20@gmail.com{emailCopied && <span className="contact-email__tooltip" role="status">{isEnglish ? 'Copied' : '已複製'}</span>}</button>
         </section>
 
         <SiteFooter />

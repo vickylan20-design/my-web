@@ -22,6 +22,7 @@
 @media(min-width:701px){.hero{height:1160px}}
 @media(min-width:701px){.capability--01 .capability__story{width:auto}}
 @media(min-width:701px){.capability__name p,.capability__name h2{font-size:84px}.capability__name span{font-size:16px}.capability__story>p,.capability__story h3{font-size:34px}.capability__story>span{font-size:16px}.capability__proof h4,.capability__proof li{font-size:14px}.outcome{font-size:14px}}
+
 @media(max-width:700px){.hero__role-wipe{top:20px;left:-76px;width:64px;height:58px}}
 .hero__role-layer--incoming h1,.hero__role-layer--incoming .hero__image{clip-path:inset(0 100% 0 0)}.hero__role-carousel.is-transitioning .hero__role-layer--outgoing{animation:none}.hero__role-carousel.is-transitioning .hero__role-layer--outgoing h1{animation:hero-role-out .64s cubic-bezier(.76,0,.24,1) both}.hero__role-carousel.is-transitioning .hero__role-layer--incoming h1{animation:hero-role-in .46s .64s cubic-bezier(.76,0,.24,1) both}.hero__role-carousel.is-transitioning .hero__role-layer--outgoing .hero__image{animation:hero-image-out 1.25s cubic-bezier(.76,0,.24,1) both}.hero__role-carousel.is-transitioning .hero__role-layer--incoming .hero__image{animation:hero-image-in .62s .76s cubic-bezier(.76,0,.24,1) both}.hero__role-carousel.is-transitioning .hero__role-wipe{animation-duration:.64s}@keyframes hero-role-in{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}@keyframes hero-image-out{from{clip-path:inset(0)}to{clip-path:inset(0 0 0 100%)}}@keyframes hero-image-in{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0)}}
 .hero__role-layer--incoming h1,.hero__role-layer--incoming .hero__image{clip-path:inset(0 0 0 100%)}@keyframes hero-role-out{from{clip-path:inset(0)}to{clip-path:inset(0 100% 0 0)}}@keyframes hero-role-in{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}@keyframes hero-image-out{from{clip-path:inset(0)}to{clip-path:inset(0 100% 0 0)}}@keyframes hero-image-in{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0)}}
@@ -120,3 +121,13 @@
 /* Homepage selected-work desktop scale and alignment */
 @media(min-width:1100px){.capability,.capability--01,.capability--04{width:calc(100% - 86px);max-width:none}.capability__top,.capability--01 .capability__top,.capability--04 .capability__top,.capability__bottom{grid-template-columns:40.6vw minmax(0,1fr);column-gap:12vw}.capability--01 .capability__visual,.capability__visual{width:100%;height:auto;aspect-ratio:2.11}.capability__name p,.capability__name h2{font-size:114px}.capability__name span{font-size:21px}.capability__story>p,.capability__story h3{font-size:46px}.capability__story>span{font-size:21px}.capability__proof h4,.capability__proof li{font-size:19px}.outcome{font-size:19px}}
 @media(min-width:701px){.capability__name p,.capability__name h2{font-size:84px}.capability__name span{font-size:16px}.capability__story>p,.capability__story h3{font-size:34px}.capability__story>span{font-size:16px}.capability__proof h4,.capability__proof li{font-size:14px}.outcome{font-size:14px}}
+
+/* Final contact layout: keep all contact content above the footer. */
+.contact{width:min(933px,100%);margin:0 auto;padding-top:74px;padding-bottom:85px;display:block;text-align:center}
+.contact h2,.contact-email{position:relative;top:-100px}
+.contact-email{margin:18px 0 0;padding:0;border:0;color:#111;background:transparent;font:inherit;font-size:16px;line-height:1.5;font-weight:400;cursor:pointer}
+@media(hover:hover) and (pointer:fine){.contact-email:hover{text-decoration:underline;text-underline-offset:4px}}
+.contact-email:focus-visible{outline:2px solid var(--blue);outline-offset:5px}
+.contact-email__tooltip{position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%);padding:5px 9px;border-radius:5px;color:#fff;background:#111;font-size:12px;line-height:1;white-space:nowrap;text-decoration:none;pointer-events:none;animation:contact-tooltip-in .18s ease-out both}
+@keyframes contact-tooltip-in{from{opacity:0;transform:translate(-50%,4px)}to{opacity:1;transform:translate(-50%,0)}}
+@media(max-width:700px){.contact{width:100%;margin:0;padding-top:54px;padding-bottom:70px;display:block}.contact-email{margin-top:12px;font-size:14px}}
