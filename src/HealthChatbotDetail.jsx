@@ -25,10 +25,27 @@ const chartData = [
   ['完整健康問題', 42], ['模糊健康描述', 31], ['只輸入健康\n關鍵字（症狀）', 23], ['與健康無相關\n文字', 4],
 ]
 
+const tableRows = [
+  ['完整健康問題', '使用者以完整句子描述症狀、情境或直接提出問題。', '8,482', '41.7%'],
+  ['模糊健康描述', '描述身體狀況，但尚未形成明確問題，例如「長期壓力大」、「一直睡不好」。', '6,282', '30.9%'],
+  ['健康主題／症狀關鍵字', '僅輸入疾病或症狀名稱，例如「頭痛」、「糖尿病」、「耳鳴」。', '4,683', '23.0%'],
+  ['非健康相關文字', '打招呼、感謝、聊天或與健康無關內容，例如「你好」、「謝謝」、「今天颱風假嗎」。', '791', '3.9%'],
+  ['空白輸入', '未輸入任何內容。', '112', '0.6%'],
+]
+
+const tableRowsEn = [
+  ['Complete health question', 'A complete sentence describing symptoms, context, or a direct question.', '8,482', '41.7%'],
+  ['Vague health description', 'A physical condition without a clear question, such as “long-term stress” or “poor sleep.”', '6,282', '30.9%'],
+  ['Health topic / symptom keyword', 'Only a disease or symptom name, such as “headache,” “diabetes,” or “tinnitus.”', '4,683', '23.0%'],
+  ['Non-health-related text', 'Greetings, thanks, casual conversation, or unrelated content.', '791', '3.9%'],
+  ['Blank input', 'No content entered.', '112', '0.6%'],
+]
+
 export default function HealthChatbotDetail({ language = 'zh' }) {
   const isEnglish = language === 'en'
   const findingItems = isEnglish ? findingsEn : findings
   const localizedChartData = isEnglish ? [['Complete health question',42],['Vague health description',31],['Health keyword / symptom',23],['Unrelated text',4]] : chartData
+  const localizedTableRows = isEnglish ? tableRowsEn : tableRows
   return <main className="project-detail chatbot-case">
     <section className="detail-intro chatbot-case__intro">
       <h1>AI Chatbot UX Design</h1>
@@ -41,7 +58,7 @@ export default function HealthChatbotDetail({ language = 'zh' }) {
 
     <section className="detail-section chatbot-case__research">
       <h2>Research</h2>
-      <div className="chatbot-case__research-grid"><h3>Data</h3><div><p>{isEnglish ? 'I analyzed post-launch question logs to understand input completeness and health relevance, identifying the factors that shaped the AI experience.' : '為了了解 AI Chatbot 使用率偏低的原因，我先分析上線後的提問紀錄，觀察使用者輸入內容的完整程度與健康相關性，從而找出影響 AI 使用體驗的關鍵因素。'}</p><div className="chatbot-chart"><div className="chatbot-chart__scale"><span>40%</span><span>30%</span><span>20%</span><span>10%</span><span>0%</span></div><div className="chatbot-chart__bars">{localizedChartData.map(([label,value],index)=><article key={label}><div className={`${index === 0 ? 'is-primary ' : ''}${index === 3 ? 'is-muted' : ''}`} style={{'--bar-height': value / 45}}><b>{value}%</b></div><small>{label}</small></article>)}</div></div>{!isEnglish && <div className="chatbot-table"><div><b>類別</b><b>說明</b><b>事件數</b><b>佔比</b></div><div><span>完整健康問題</span><span>使用者以完整句子描述症狀、情境或直接提出問題。</span><span>8,482</span><span>41.7%</span></div><div><span>模糊健康描述</span><span>描述身體狀況，但尚未形成明確問題。</span><span>6,282</span><span>30.9%</span></div></div>}</div></div>
+      <div className="chatbot-case__research-grid"><h3>Data</h3><div><p>{isEnglish ? 'I analyzed post-launch question logs to understand input completeness and health relevance, identifying the factors that shaped the AI experience.' : '為了了解 AI Chatbot 使用率偏低的原因，我先分析上線後的提問紀錄，觀察使用者輸入內容的完整程度與健康相關性，從而找出影響 AI 使用體驗的關鍵因素。'}</p><div className="chatbot-chart"><div className="chatbot-chart__scale"><span>40%</span><span>30%</span><span>20%</span><span>10%</span><span>0%</span></div><div className="chatbot-chart__bars">{localizedChartData.map(([label,value],index)=><article key={label}><div className={`${index === 0 ? 'is-primary ' : ''}${index === 3 ? 'is-muted' : ''}`} style={{'--bar-height': value / 45}}><b>{value}%</b></div><small>{label}</small></article>)}</div></div><div className="chatbot-table"><div><b>{isEnglish ? 'Category' : '類別'}</b><b>{isEnglish ? 'Description' : '說明'}</b><b>{isEnglish ? 'Events' : '事件數'}</b><b>{isEnglish ? 'Share' : '佔比'}</b></div>{localizedTableRows.map(([category,description,events,share])=><div key={category}><span>{category}</span><span>{description}</span><span>{events}</span><span>{share}</span></div>)}</div></div></div>
     </section>
 
     <section className="detail-section chatbot-case__synthesis">
