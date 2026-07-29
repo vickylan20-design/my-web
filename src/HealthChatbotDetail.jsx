@@ -69,6 +69,7 @@ export default function HealthChatbotDetail({ language = 'zh' }) {
     </section>
 
     <section className="achievement chatbot-case__achievement"><h2>Achievement</h2><div><h3>{isEnglish ? <>After embedding the chatbot in health articles,<br/>engagement reached <b>88.7%</b>,<br/>with average dwell time up to 3:10.</> : <>健康文章導入 AI Chatbot 後，<br/>參與率最高達 <b>88.7%</b>，<br/>平均停留時間最高達 3 分 10 秒。</>}</h3><p>{isEnglish ? '(About 35% above the site-wide average)' : '（較全站平均提升約 35%）'}</p></div></section>
+    <section className="chatbot-case__ui-showcase"><div className="chatbot-case__ui-image"><picture><source media="(max-width: 800px)" srcSet="/assets/detail/chatbot_UI_mobile.jpg"/><img src="/assets/detail/chatbot_UI.jpg" alt={isEnglish ? 'Health article AI Chatbot user interface' : '健康文章 AI Chatbot 使用介面'} /></picture></div></section>
     <SiteFooter />
   </main>
 }
