@@ -7,3 +7,6 @@
 .chatbot-case__ui-image,.chatbot-case__ui-image picture,.chatbot-case__ui-showcase img{display:block;width:100%;height:auto}
 @media(max-width:800px){.chatbot-case__achievement{padding-bottom:40px}.chatbot-case__ui-showcase{padding-bottom:110px}}
 .chatbot-case__achievement{background:#fff}
+
+/* Findings without supporting artwork use the full remaining content width. */
+.chatbot-case__findings article:not(:has(>img))>div{grid-column:2/4}
