@@ -4,6 +4,7 @@ import SiteFooter from './SiteFooter.jsx'
 import StructureProjectDetail from './StructureProjectDetail.jsx'
 import MemberSystemDetail from './MemberSystemDetail.jsx'
 import HealthChatbotDetail from './HealthChatbotDetail.jsx'
+import ResumePage from './ResumePage.jsx'
 
 const capabilityItems = [
   { number: '01', name: 'Define', caption: '（定義真正的問題）', project: 'Moodii APP', title: '群聊功能體驗優化', scope: 'User Research, UX Design', points: ['收集用戶回饋與使用者訪談', '分析產品數據與使用行為', '定義產品問題與設計目標', '快速迭代產品服務設計與體驗'], outcome: '整體使用率提升5%、房間開啟率提升11%', image: '/assets/figma/understand-source.png', alt: 'Moodii 社交 App 群聊體驗優化' },
@@ -118,6 +119,9 @@ function Capability({ item, onOpen }) {
 }
 
 function App() {
+  const resumeRoute = window.location.pathname.replace(/\/+$/, '')
+  const resumeVariant = resumeRoute === '/resume/product-strategy' ? 'strategy' : resumeRoute === '/resume/product-systems' ? 'systems' : resumeRoute === '/resume/ai-startup' ? 'ai' : resumeRoute === '/resume' ? 'default' : null
+  if (resumeVariant) return <ResumePage variant={resumeVariant} />
   const projectSlug = new URLSearchParams(window.location.search).get('project')
   const [isDetail, setIsDetail] = useState(() => Boolean(projectSlug))
   const [navVisible, setNavVisible] = useState(true)
@@ -255,7 +259,7 @@ function App() {
       <header className={`site-nav ${navVisible ? 'is-visible' : 'is-hidden'}`}>
         <a href="#about" className="site-brand" onClick={(e) => { if(isDetail){e.preventDefault();goHome()} }}><strong>LAN</strong><span>(Product Designer)</span></a>
         <nav className="site-links" aria-label="Main navigation">
-          <a href="#about" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#about')}}}>About</a><a href="#selected-work" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#selected-work')}}}>Selected Work</a><a href="#work-experience" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#work-experience')}}}>Experience</a>
+          <a href="#about" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#about')}}}>About</a><a href="#selected-work" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#selected-work')}}}>Selected Work</a><a href="#work-experience" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#work-experience')}}}>Experience</a><a href="/resume">Resume</a>
         </nav>
         <div className="language" role="group" aria-label="Language"><button type="button" className={language === 'zh' ? 'is-active' : ''} onClick={() => changeLanguage('zh')} aria-pressed={language === 'zh'}>ZH</button><button type="button" className={language === 'en' ? 'is-active' : ''} onClick={() => changeLanguage('en')} aria-pressed={language === 'en'}>EN</button></div>
       </header>
