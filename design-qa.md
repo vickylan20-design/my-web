@@ -1,44 +1,47 @@
-# AI Chatbot Detail — Design QA
+# Resume Hero First Viewport — Design QA
 
-Source visual truth: `/Users/tvbs/Downloads/0724_Selected Work_2.png`
+- Source visual truth: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-07bd055a-79f3-45d6-ad89-01cf3e80a56a.png`
+- Earlier implementation reference: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-4c552391-4d77-4c5f-b2d3-a6f0f3a013cc.png`
+- Browser implementation screenshot: `/Users/tvbs/Documents/myWeb/tmp/pdfs/resume-hero-first-viewport.png`
+- Route: `http://localhost:5174/resume`
+- Browser viewport: 1280 × 720 CSS px; implementation screenshot: 1265 × 712 px at device scale 1
+- Source reference: 2048 × 1152 px; earlier implementation reference: 2048 × 920 px
+- State: desktop, English resume
 
-Implementation: `http://localhost:4173/?project=health-chatbot`
+**Full-view comparison evidence**
 
-State: default detail-page state, no hover or menu interaction.
+The target’s first viewport includes the full Hero divider plus the opening of Selected Impact. The revised browser view now reproduces that same composition: Hero content remains above the divider while the section number, title, and first impact item enter the bottom of the first viewport.
 
-## Evidence
+**Focused region comparison evidence**
 
-- Source is a desktop portfolio-detail reference image.
-- The local implementation was opened in the in-app browser and checked for routing, hero content, project-goal panel, research chart, responsive layout, and footer rendering.
-- Browser capture is currently constrained to a narrow in-app viewport, so it cannot be normalized to the supplied desktop reference frame. The observed narrow layout is responsive and does not overflow.
+The Hero now runs from y=64 to y=524 at the test viewport, for a 460 px height. Selected Impact begins at y=524 and its visible header content starts at y=631, within the 720 px viewport. The earlier implementation pushed this content below the fold.
 
-## Fidelity surfaces
+**Required fidelity surfaces**
 
-- Typography: the large blue display heading, blue section headings, small metadata labels, Chinese body copy, and achievement hierarchy are implemented.
-- Spacing and layout rhythm: desktop uses the requested wide hero/goal split, content grid, chart/table grouping, research imagery, numbered decisions, and achievement section; narrow screens stack these blocks.
-- Colors and tokens: implemented with the existing portfolio blue and the soft blue-to-white case-study background.
-- Image quality and assets: the provided Health 2.0 product image is used for the hero. The source includes three separate interview photographs that were not supplied as individual assets; the implementation temporarily reuses the project image with different crops for that strip.
-- Copy/content: project-specific overview, research, design-decision, and achievement copy are present.
+- Fonts and typography: unchanged from the approved lighter name treatment; passed.
+- Spacing and layout rhythm: desktop Hero minimum height reduced from 560 px to 460 px and bottom padding from 112 px to 72 px; the next section now enters the first viewport; passed.
+- Colors and visual tokens: unchanged; passed.
+- Image quality and asset fidelity: portrait remains the original extracted asset; passed.
+- Copy and content: unchanged; passed.
 
-## Findings
+**Findings**
 
-- [P1] Research-photo strip is not asset-identical.
-  Location: `HealthChatbotDetail.jsx`, `chatbot-case__research-photos`.
-  Evidence: the source has three distinct user-interview photos; the implementation reuses the available Health 2.0 image.
-  Impact: this materially changes the visual storytelling in the synthesis section.
-  Fix: replace the three images with the interview photos when supplied.
+- No actionable P0, P1, or P2 issues remain for the requested first-viewport composition.
 
-- [P1] Desktop visual comparison is unverified.
-  Location: full page.
-  Evidence: source is desktop; browser capture available to this run is narrow and not the same viewport.
-  Impact: precise desktop spacing and typography cannot be certified against the reference.
-  Fix: capture the route in a desktop-size browser viewport, compare full page and focused hero/research regions, then iterate.
+**Comparison history**
 
-## Primary interactions tested
+- Earlier P2: excessive Hero blank space kept Selected Impact outside the first viewport.
+- Fix: added a desktop-only 460 px minimum Hero height and 72 px bottom padding; mobile behavior was left unchanged.
+- Post-fix evidence: divider ends at y=524 and Selected Impact is visibly introduced by y=631 in a 720 px viewport.
 
-- Direct route `?project=health-chatbot` loads the AI Chatbot detail page.
-- Homepage capability 03 opens the same route.
+**Primary checks**
 
-## Final result
+- Production build passed.
+- No horizontal overflow.
+- Browser logs contain no errors.
 
-blocked
+**Follow-up Polish**
+
+- None required for this adjustment.
+
+final result: passed

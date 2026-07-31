@@ -25,9 +25,9 @@ const workItems = [
   { title: 'TVBS Member System', type: 'System Redesign, Service Design', year: '2025', company: 'TVBS', image: '/assets/detail/member-cover.jpg', detail: '將五大品牌的零散登入需求整合成長期會員策略。', detailSlug: 'member-system' },
   { title: 'Nutrition Site', type: 'Web UIUX Design, Design System', year: '2025', company: 'TVBS', image: '/assets/project/nutrition-site.png', detail: '建立清楚、一致且可持續擴充的健康內容體驗。' },
   { title: 'Health 2.0 AI Chatbot', type: 'Web / APP UIUX Design, User Research', year: '2024–2025', company: 'TVBS', image: '/assets/project/health20-wide.jpg', detail: '從研究出發，探索 AI 如何協助使用者找到真正需要的健康答案。', detailSlug: 'health-chatbot' },
-  { title: 'Moment APP', type: 'App Redesign, User Research', year: '2023', company: 'Moment Pet Wellness', image: '/assets/project/moment-pet.png', detail: '讓寵物健康資訊更容易被理解與採取行動。' },
+  { title: 'Moment APP', type: 'App Redesign, User Research', year: '2023', company: 'Moment Pet Wellness', image: '/assets/project/moment-pet.png', detail: '優化寵物醫療 App 的產品體驗與介面，讓健康管理流程更直覺、易用。', externalUrl: '/assets/project/Momentapp.jpg' },
   { title: 'Moodii APP', type: 'App 0–1 Product Design, User Research', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/moodii.png', detail: '從 0–1 打造一個能安心表達情緒的社交產品。', externalUrl: '/assets/project/Moodii_UIUX.jpg' },
-  { title: 'ShapeX APP', type: 'App 0–1 Product Design', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/shapex.png', detail: '把動作辨識技術轉化為可理解的運動回饋。', externalUrl: '/assets/project/ShapeX_UIUX.jpg' },
+  { title: 'ShapeX APP', type: 'App 0–1 Product Design', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/shapex.png', detail: '從 0→1 設計隨身運動教練 App，以動作軌跡比對概念，打造直覺的訓練與回饋體驗。', externalUrl: '/assets/project/ShapeX_UIUX.jpg' },
 ]
 
 const workDetailsEn = [
@@ -35,9 +35,9 @@ const workDetailsEn = [
   'Unified fragmented login needs across five brands into a long-term membership strategy.',
   'Created a clear, consistent, and extensible health-content experience.',
   'Explored how AI can help people find the health answers they actually need.',
-  'Made pet-health information easier to understand and act on.',
+  'Redesigned the pet healthcare app experience and interface to make health management more intuitive and accessible.',
   'Built a safe social product from 0 to 1 for expressing emotions.',
-  'Turned motion-recognition technology into understandable exercise feedback.',
+  'Designed a personal fitness coach app from 0 to 1, using motion-path comparison to create an intuitive training and feedback experience.',
 ]
 
 const heroRoles = [
@@ -284,13 +284,16 @@ function App() {
             {localizedWorkItems.map((item, index) => {
               const active = activeWork === index
               const opensDestination = Boolean(item.detailSlug || item.externalUrl)
+              const rowContent = <>
+                <span className="work-row__main"><strong>{item.title}</strong><small>{item.type}</small><em>{item.detail}</em></span>
+                <span className="work-row__meta"><b>{item.year}</b><small>{item.company}</small></span>
+                <span className="work-row__toggle" aria-hidden="true">{active ? '−' : '+'}</span>
+              </>
               return (
                 <article className={`work-row ${active ? 'is-active' : ''} ${opensDestination ? 'work-row--link' : ''}`} key={item.title} onPointerEnter={() => setActiveWork(index)}>
-                  <button type="button" aria-expanded={opensDestination ? undefined : active} aria-label={opensDestination ? `${isEnglish ? 'Open' : '開啟'} ${item.title}` : undefined} onClick={() => openWorkItem(item)}>
-                    <span className="work-row__main"><strong>{item.title}</strong><small>{item.type}</small><em>{item.detail}</em></span>
-                    <span className="work-row__meta"><b>{item.year}</b><small>{item.company}</small></span>
-                    <span className="work-row__toggle" aria-hidden="true">{active ? '−' : '+'}</span>
-                  </button>
+                  {item.externalUrl
+                    ? <a href={item.externalUrl} target="_blank" rel="noopener noreferrer" aria-label={`${isEnglish ? 'Open' : '開啟'} ${item.title}`}>{rowContent}</a>
+                    : <button type="button" aria-expanded={opensDestination ? undefined : active} aria-label={opensDestination ? `${isEnglish ? 'Open' : '開啟'} ${item.title}` : undefined} onClick={() => openWorkItem(item)}>{rowContent}</button>}
                   {active && <div className="work-preview" aria-hidden="true"><img src={item.image} alt="" /></div>}
                 </article>
               )
