@@ -132,7 +132,7 @@ function PrimaryResume({ pdf }) {
   return <main className="primary-resume">
     <header className="site-nav is-visible">
       <a href="/#about" className="site-brand"><strong>LAN</strong><span>(Product Designer)</span></a>
-      <nav className="site-links" aria-label="Main navigation"><a href="/#about">About</a><a href="/#selected-work">Selected Work</a><a href="/#work-experience">Experience</a><a href="/resume">Resume</a></nav>
+      <nav className="site-links" aria-label="Main navigation"><a href="/#about">About</a><a href="/#selected-work">Selected Work</a><a href="/#work-experience">Experience</a><a href="/?page=resume">Resume</a></nav>
       <div className="language" role="group" aria-label="Language"><button type="button" className={language === 'zh' ? 'is-active' : ''} onClick={() => switchLanguage('zh')} aria-pressed={language === 'zh'}>ZH</button><button type="button" className={language === 'en' ? 'is-active' : ''} onClick={() => switchLanguage('en')} aria-pressed={language === 'en'}>EN</button></div>
     </header>
 
