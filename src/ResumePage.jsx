@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './resume.css'
 
 const baseImpact = [
@@ -123,14 +123,48 @@ const primaryResume = {
 
 function PrimaryResume({ pdf }) {
   const [language, setLanguage] = useState(() => window.localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'zh')
+  const [navVisible, setNavVisible] = useState(true)
+  const lastScrollY = useRef(0)
   const copy = primaryResume[language]
   const switchLanguage = (next) => {
     setLanguage(next)
     window.localStorage.setItem('portfolio-language', next)
     document.documentElement.lang = next === 'en' ? 'en' : 'zh-Hant'
   }
+
+  useEffect(() => {
+    let ticking = false
+
+    const updateNavigation = () => {
+      const currentScrollY = Math.max(window.scrollY, 0)
+      const difference = currentScrollY - lastScrollY.current
+
+      if (currentScrollY < 64) {
+        setNavVisible(true)
+      } else if (difference > 8) {
+        setNavVisible(false)
+      } else if (difference < -8) {
+        setNavVisible(true)
+      }
+
+      lastScrollY.current = currentScrollY
+      ticking = false
+    }
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavigation)
+        ticking = true
+      }
+    }
+
+    lastScrollY.current = window.scrollY
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return <main className="primary-resume">
-    <header className="site-nav is-visible">
+    <header className={`site-nav ${navVisible ? 'is-visible' : 'is-hidden'}`}>
       <a href="/#about" className="site-brand"><strong>LAN</strong><span>(Product Designer)</span></a>
       <nav className="site-links" aria-label="Main navigation"><a href="/#about">About</a><a href="/#selected-work">Selected Work</a><a href="/#work-experience">Experience</a><a href="/?page=resume">Resume</a></nav>
       <div className="language" role="group" aria-label="Language"><button type="button" className={language === 'zh' ? 'is-active' : ''} onClick={() => switchLanguage('zh')} aria-pressed={language === 'zh'}>ZH</button><button type="button" className={language === 'en' ? 'is-active' : ''} onClick={() => switchLanguage('en')} aria-pressed={language === 'en'}>EN</button></div>
