@@ -86,9 +86,9 @@ function HeroRoleCarousel() {
   )
 }
 
-function Capability({ item, onOpen }) {
+function Capability({ item, onOpen, id }) {
   return (
-    <article className={`capability capability--${item.number} ${onOpen ? 'capability--clickable' : ''}`} data-reveal onClick={onOpen} onKeyDown={(event) => event.key === 'Enter' && onOpen?.()} role={onOpen ? 'link' : undefined} tabIndex={onOpen ? 0 : undefined}>
+    <article id={id} className={`capability capability--${item.number} ${onOpen ? 'capability--clickable' : ''}`} data-reveal onClick={onOpen} onKeyDown={(event) => event.key === 'Enter' && onOpen?.()} role={onOpen ? 'link' : undefined} tabIndex={onOpen ? 0 : undefined}>
       <div className="capability__top">
         <div className="capability__name">
           <p>{item.number}</p>
@@ -255,12 +255,23 @@ function App() {
     document.documentElement.style.scrollBehavior = previousBehavior
   }, [isDetail])
 
+  useEffect(() => {
+    if (isDetail || !window.location.hash) return
+    const target = document.getElementById(window.location.hash.slice(1))
+    if (!target) return
+
+    const frame = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => target.scrollIntoView({ block: 'start', behavior: 'auto' }))
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [isDetail])
+
   return (
     <div className="site-shell">
       <header className={`site-nav ${navVisible ? 'is-visible' : 'is-hidden'}`}>
         <a href="#about" className="site-brand" onClick={(e) => { if(isDetail){e.preventDefault();goHome()} }}><strong>LAN</strong><span>(Product Designer)</span></a>
         <nav className="site-links" aria-label="Main navigation">
-          <a href="#about" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#about')}}}>About</a><a href="#selected-work" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#selected-work')}}}>Selected Work</a><a href="#work-experience" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#work-experience')}}}>Experience</a><a href="/?page=resume">Resume</a>
+          <a href="/?page=resume">About</a><a href="#selected-work" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#selected-work')}}}>Selected Work</a><a href="#work-experience" onClick={(e)=>{if(isDetail){e.preventDefault();goHome('#work-experience')}}}>Experience</a>
         </nav>
         <div className="language" role="group" aria-label="Language"><button type="button" className={language === 'zh' ? 'is-active' : ''} onClick={() => changeLanguage('zh')} aria-pressed={language === 'zh'}>ZH</button><button type="button" className={language === 'en' ? 'is-active' : ''} onClick={() => changeLanguage('en')} aria-pressed={language === 'en'}>EN</button></div>
       </header>
@@ -274,8 +285,8 @@ function App() {
             <p data-reveal>I'm Lan, a Senior Product Designer designing digital products across healthcare, wellness, media, and AI.</p>
           </section>
 
-          <section className="capabilities" id="selected-work">
-            {localizedCapabilityItems.map((item) => <Capability item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
+          <section className="capabilities">
+            {localizedCapabilityItems.map((item, index) => <Capability id={index === 0 ? 'selected-work' : undefined} item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
           </section>
         </div>
 
