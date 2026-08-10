@@ -7,17 +7,17 @@ import HealthChatbotDetail from './HealthChatbotDetail.jsx'
 import ResumePage from './ResumePage.jsx'
 
 const capabilityItems = [
-  { number: '01', name: 'Define', caption: '（定義真正的問題）', project: 'Moodii APP', title: '群聊功能體驗優化', scope: 'User Research, UX Design', points: ['收集用戶回饋與使用者訪談', '分析產品數據與使用行為', '定義產品問題與設計目標', '快速迭代產品服務設計與體驗'], outcome: '整體使用率提升5%、房間開啟率提升11%', image: '/assets/figma/understand-source.png', alt: 'Moodii 社交 App 群聊體驗優化' },
-  { number: '02', name: 'Structure', caption: '（建立一致可持續的產品框架）', project: 'TVBS News', title: '後台系統改版設計', scope: 'Information Architecture, System Design', points: ['觀察使用者操作習慣與需求', '重整資訊架構與操作流程', '建立一致的介面與互動規範', '保留可擴充的資訊架構'], outcome: '新版 CMS 於 2026 / 8 正式上線啟用', image: '/assets/figma/structure-source.png', alt: 'TVBS News CMS 新聞編輯後台' },
-  { number: '03', name: 'Explore', caption: '（找到產品合適的應用場景）', project: 'Health 2.0', title: 'AI Chatbot 體驗優化', scope: 'Product Discovery, UX Research, UX Design', points: ['分析數據與提問內容', '使用者訪談與 Prototype 測試', '設計新的服務場景與體驗', '持續追蹤數據並優化提問品質'], outcome: '提升健康平台參與率最高至88%', image: '/assets/project/health20-wide.jpg', alt: 'Health 2.0 AI Chatbot 體驗優化' },
-  { number: '04', name: 'Strategize', caption: '（平衡商業需求與產品體驗）', project: 'TVBS Member System', title: '介面體驗優化＆商業結合', scope: 'Product Strategy, Service Design', points: ['盤點用戶使用流程中的痛點', '優化產品介面和使用體驗', '建立一致的跨品牌登入體驗', '創造可兼顧商業需求的彈性設計'], outcome: 'Redesign 上線、會員產品 Roadmap 建立', image: '/assets/detail/member-cover.jpg', alt: '會員登入情境畫面' },
+  { number: '01', headline: '房間開啟率提升 11%：重構 Moodii 群聊體驗', summary: '從用戶回饋、使用者訪談與產品數據出發，重新定義群聊功能的核心問題與設計目標，並透過快速迭代，讓情緒交流更安心、更容易開始。', tags: ['User Research', 'UX Design'], image: '/assets/figma/understand-source.png', alt: 'Moodii 社交 App 群聊體驗優化' },
+  { number: '02', headline: '重整 20 年內容流程：打造可持續擴充的新聞 CMS', summary: '觀察新聞編輯的操作習慣與需求，重整資訊架構、內容流程與互動規範，讓複雜的後台工作更一致，也為未來功能保留擴充彈性。', tags: ['Information Architecture', 'System Design'], image: '/assets/figma/structure-source.png', alt: 'TVBS News CMS 新聞編輯後台' },
+  { number: '03', headline: '平台參與率最高達 88%：重新定義 AI 健康問答體驗', summary: '結合提問數據分析、使用者訪談與 Prototype 測試，探索 AI 在健康服務中的適合場景，並持續追蹤數據、提升問題與回答品質。', tags: ['Product Discovery', 'UX Research', 'UX Design'], image: '/assets/project/health20-wide.jpg', alt: 'Health 2.0 AI Chatbot 體驗優化' },
+  { number: '04', headline: '整合五大品牌登入體驗：建立會員產品 Roadmap', summary: '盤點跨品牌登入流程與使用痛點，在優化介面體驗的同時整合商業需求，建立一致、可延伸的會員服務策略與產品發展方向。', tags: ['Product Strategy', 'Service Design'], image: '/assets/detail/member-cover.jpg', alt: '會員登入情境畫面' },
 ]
 
 const capabilityItemsEn = [
-  { title: 'Group Chat Experience Optimization', points: ['Gathered user feedback and conducted interviews', 'Analyzed product data and user behavior', 'Defined product problems and design goals', 'Rapidly iterated the service design and experience'], outcome: 'Overall usage +5% · Room activation +11%', alt: 'Moodii social app group chat optimization' },
-  { title: 'CMS Redesign', points: ['Observed user habits and needs', 'Restructured information architecture and workflows', 'Built consistent UI and interaction patterns', 'Created an extensible information architecture'], outcome: 'New CMS scheduled to launch in Aug 2026', alt: 'TVBS News CMS editorial system' },
-  { title: 'AI Chatbot Experience Optimization', points: ['Analyzed usage data and question content', 'Conducted interviews and prototype tests', 'Designed new service scenarios and experiences', 'Tracked data and improved question quality'], outcome: 'Health-platform engagement reached 88%', alt: 'Health 2.0 AI Chatbot optimization' },
-  { title: 'Experience Optimization & Business Integration', points: ['Mapped pain points across the user journey', 'Improved the product interface and experience', 'Created a consistent cross-brand login experience', 'Designed a flexible model that supports business needs'], outcome: 'Redesign launched · Membership roadmap established', alt: 'Member login experience' },
+  { headline: 'Room activation +11%: Reframing the Moodii group-chat experience', summary: 'Starting from user feedback, interviews, and product data, I redefined the core problem and design goals, then iterated rapidly to make emotional conversations feel safer and easier to begin.', tags: ['User Research', 'UX Design'], alt: 'Moodii social app group chat optimization' },
+  { headline: 'Rebuilding 20 years of workflows: A scalable newsroom CMS', summary: 'I observed editorial habits and needs, then restructured the information architecture, content workflow, and interaction patterns to make complex newsroom work more consistent and extensible.', tags: ['Information Architecture', 'System Design'], alt: 'TVBS News CMS editorial system' },
+  { headline: 'Engagement reached 88%: Redefining the AI health Q&A experience', summary: 'Combining question-data analysis, interviews, and prototype testing, I explored the right role for AI in health services and continuously improved question and answer quality.', tags: ['Product Discovery', 'UX Research', 'UX Design'], alt: 'Health 2.0 AI Chatbot optimization' },
+  { headline: 'Unifying five brand logins: Building the membership roadmap', summary: 'I mapped cross-brand login friction and balanced experience improvements with business needs to create a consistent, extensible membership strategy and product direction.', tags: ['Product Strategy', 'Service Design'], alt: 'Member login experience' },
 ]
 
 const workItems = [
@@ -81,29 +81,14 @@ function HeroRoleCarousel() {
 function Capability({ item, onOpen, id }) {
   return (
     <article id={id} className={`capability capability--${item.number} ${onOpen ? 'capability--clickable' : ''}`} data-reveal onClick={onOpen} onKeyDown={(event) => event.key === 'Enter' && onOpen?.()} role={onOpen ? 'link' : undefined} tabIndex={onOpen ? 0 : undefined}>
-      <div className="capability__top">
-        <div className="capability__name">
-          <p>{item.number}</p>
-          <div><h2>{item.name}</h2><span>{item.caption}</span></div>
-        </div>
-        <div className="capability__story">
-          <p>{item.project}</p>
-          <h3>{item.title}</h3>
-          <span>{item.scope}</span>
-        </div>
+      <div className="capability__visual" data-image-reveal>
+        <img src={item.image} alt={item.alt} loading="eager" />
       </div>
-      <div className="capability__bottom">
-        <div className="capability__visual" data-image-reveal>
-          {item.images
-            ? item.images.map((image, index) => <img className={`capability__phone capability__phone--${index + 1}`} src={image} alt={index === 0 ? item.alt : ''} loading="eager" key={image} />)
-            : <img src={item.image} alt={item.alt} loading="eager" />}
-        </div>
-        <div className="capability__proof">
-          <h4>Key Actions</h4>
-          <ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul>
-          <div className="outcome">
-            <strong>Outcome</strong><span>{item.outcome}</span><img src="/assets/figma/outcome-arrow.svg" alt="" />
-          </div>
+      <div className="capability__content">
+        <h2>{item.headline}</h2>
+        <p>{item.summary}</p>
+        <div className="capability__tags" aria-label="Project capabilities">
+          {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
       </div>
     </article>
@@ -277,8 +262,9 @@ function App() {
             <p data-reveal>I'm Lan, a Senior Product Designer designing digital products across healthcare, wellness, media, and AI.</p>
           </section>
 
-          <section className="capabilities">
-            {localizedCapabilityItems.map((item, index) => <Capability id={index === 0 ? 'selected-work' : undefined} item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
+          <section className="capabilities" id="selected-work">
+            <h2 className="capabilities__title" data-reveal>Selected Work</h2>
+            {localizedCapabilityItems.map((item) => <Capability item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
           </section>
         </div>
 

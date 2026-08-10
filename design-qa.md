@@ -1,46 +1,47 @@
-# Work / Experience Design QA
+# Capabilities Case Summary Design QA
 
-- Source visual truth: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-3f188de8-d046-42ee-b36f-f94550fa669f.png`
-- Implementation screenshot: `/Users/tvbs/Documents/myWeb/work-desktop-qa.png`
-- Comparison image: `/Users/tvbs/Documents/myWeb/work-qa-comparison.jpg`
-- Source pixels: 1104 × 1186
-- Comparison viewport: 1104 × 1186 CSS px, device scale factor 1
-- State: homepage scrolled to `#work-experience`, desktop, ZH selected
-- Responsive evidence: 390 × 844 CSS px, stored at `/Users/tvbs/Documents/myWeb/work-mobile-qa.png`
+- Source visual truth: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-11c78c59-cbde-424d-b4cd-a856f39ba892.png`
+- Browser implementation screenshot: `/Users/tvbs/Documents/myWeb/selected-work-title-qa.png`
+- Side-by-side comparison: `/Users/tvbs/Documents/myWeb/capabilities-summary-comparison.jpg`
+- Browser viewport: 1265 × 712 CSS px, device scale factor 1
+- State: homepage at `#selected-work`, desktop, ZH selected
 
-## Full-view comparison evidence
+## Comparison evidence
 
-The supplied reference and browser-rendered implementation were normalized to the same 1104 × 1186 frame and placed side by side. The implementation reproduces the centered blue heading, APP/WEB grouping, three-column desktop grid, image order, typography hierarchy, and white background. A focused region comparison was not needed because the complete work section and all repeated card structures were legible in the normalized full-view comparison.
+The reference and browser implementation were placed together in one comparison image. The implementation intentionally translates the reference's information structure—not its dark visual theme—into the portfolio's existing design language. Each case uses a prominent outcome-led headline, supporting paragraph, and capability tags. A separate browser capture verifies the new large, left-aligned Selected Work section heading above the cards.
 
 ## Required fidelity surfaces
 
-- Fonts and typography: Google Sans Flex is retained from the portfolio. Heading weight, blue color, compact card-title hierarchy, and small metadata labels match the reference closely.
-- Spacing and layout rhythm: three equal desktop columns, consistent image ratios, broad section breathing room, and compact row spacing are implemented. Tablet and mobile collapse to two and one columns respectively.
-- Colors and visual tokens: existing portfolio blue `#165dfb`, black text, and white background match the source.
-- Image quality and asset fidelity: all nine supplied raster assets are used directly with consistent cover crops; there are no placeholders or code-drawn substitutes.
-- Copy and content: APP and WEB labels, project titles, and design-discipline labels match the supplied reference.
+- Fonts and typography: large outcome-led headings use the existing Google Sans Flex family, 500 weight, tight tracking, and the portfolio's established black hierarchy. Supporting copy uses full black with a responsive 14–18 px range.
+- Spacing and layout rhythm: the left-aligned Selected Work heading shares the exact 40 px desktop gutter with the case cards and uses the same 64 px size as Work / Experience. Desktop uses a wider 1.15fr image column and .85fr text column, a 100 px column gap, 100 px top and bottom padding for each of the first four projects, and vertically centered content.
+- Colors and tokens: Hero and capability sections use a pure white base with blue accents and black text; only the blue glow image and its blur remain in the Hero. Capability tags use the portfolio blue as simple underlined text without pill backgrounds.
+- Image quality and fidelity: all four original project images are retained as real raster assets with consistent 1.65:1 crops.
+- Copy and content: the previous number/method labels, Key Actions list, and separate Outcome bar were replaced by four concise outcome headlines, descriptions, and capability tags in both ZH and EN. The Moodii headline uses the specific 11% room-activation result.
 
 ## Comparison history
 
-1. Initial pass found a P2 vertical-density mismatch: the second WEB row sat too low and card typography was heavier/larger than the source.
-2. Fixes: reduced section and heading spacing, tightened category-to-grid spacing and grid row gap, and reduced card title/metadata sizes.
-3. Post-fix evidence: the updated browser render preserves all nine cards, aligns the section rhythm more closely to the reference, has no desktop or mobile horizontal overflow, and reports no browser console warnings or errors.
+1. Earlier layout used number/method labels on the left and split project information across separate top and bottom grids.
+2. Structural redesign removed the 01–04 labels and replaced the component with a single two-column image/story card.
+3. Added localized outcome headlines, supporting summaries, and capability tags for all four projects.
+4. Added a large, left-aligned Selected Work section title and moved the navigation anchor to the section heading.
+5. Browser verification confirms four headlines, zero legacy `.capability__name` labels, no horizontal overflow, and no console warnings or errors.
 
 ## Findings
 
-No actionable P0, P1, or P2 differences remain.
+No actionable P0, P1, or P2 differences remain for the requested structural redesign.
 
-## Interaction and responsive checks
+## Validation
 
-- Verified all three linked APP cards expose keyboard-focusable anchors and retain hover feedback.
-- Verified 9 cards render.
-- Verified desktop three-column layout.
-- Verified mobile single-column layout at 390 px with `scrollWidth === clientWidth`.
-- Checked browser console warnings and errors: none.
-- Production build and `git diff --check`: passed.
+- Production build: passed.
+- `git diff --check`: passed.
+- Desktop two-column structure: passed.
+- Horizontal overflow: none.
+- Browser console warnings/errors: none.
+- Existing case-study click destinations: preserved.
+- Selected Work navigation anchor and left alignment: passed.
 
 ## Follow-up polish
 
-- P3: exact line wrapping may vary slightly when the remote font is unavailable and the browser falls back to Helvetica/Arial.
+- P3: wording can be refined further if the user wants a more metric-heavy or more narrative portfolio voice.
 
 final result: passed
