@@ -1,47 +1,46 @@
-# Resume Hero First Viewport — Design QA
+# Work / Experience Design QA
 
-- Source visual truth: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-07bd055a-79f3-45d6-ad89-01cf3e80a56a.png`
-- Earlier implementation reference: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-4c552391-4d77-4c5f-b2d3-a6f0f3a013cc.png`
-- Browser implementation screenshot: `/Users/tvbs/Documents/myWeb/tmp/pdfs/resume-hero-first-viewport.png`
-- Route: `http://localhost:5174/resume`
-- Browser viewport: 1280 × 720 CSS px; implementation screenshot: 1265 × 712 px at device scale 1
-- Source reference: 2048 × 1152 px; earlier implementation reference: 2048 × 920 px
-- State: desktop, English resume
+- Source visual truth: `/var/folders/k1/q7t2q5hn0398p33_ryrh16080000gp/T/codex-clipboard-3f188de8-d046-42ee-b36f-f94550fa669f.png`
+- Implementation screenshot: `/Users/tvbs/Documents/myWeb/work-desktop-qa.png`
+- Comparison image: `/Users/tvbs/Documents/myWeb/work-qa-comparison.jpg`
+- Source pixels: 1104 × 1186
+- Comparison viewport: 1104 × 1186 CSS px, device scale factor 1
+- State: homepage scrolled to `#work-experience`, desktop, ZH selected
+- Responsive evidence: 390 × 844 CSS px, stored at `/Users/tvbs/Documents/myWeb/work-mobile-qa.png`
 
-**Full-view comparison evidence**
+## Full-view comparison evidence
 
-The target’s first viewport includes the full Hero divider plus the opening of Selected Impact. The revised browser view now reproduces that same composition: Hero content remains above the divider while the section number, title, and first impact item enter the bottom of the first viewport.
+The supplied reference and browser-rendered implementation were normalized to the same 1104 × 1186 frame and placed side by side. The implementation reproduces the centered blue heading, APP/WEB grouping, three-column desktop grid, image order, typography hierarchy, and white background. A focused region comparison was not needed because the complete work section and all repeated card structures were legible in the normalized full-view comparison.
 
-**Focused region comparison evidence**
+## Required fidelity surfaces
 
-The Hero now runs from y=64 to y=524 at the test viewport, for a 460 px height. Selected Impact begins at y=524 and its visible header content starts at y=631, within the 720 px viewport. The earlier implementation pushed this content below the fold.
+- Fonts and typography: Google Sans Flex is retained from the portfolio. Heading weight, blue color, compact card-title hierarchy, and small metadata labels match the reference closely.
+- Spacing and layout rhythm: three equal desktop columns, consistent image ratios, broad section breathing room, and compact row spacing are implemented. Tablet and mobile collapse to two and one columns respectively.
+- Colors and visual tokens: existing portfolio blue `#165dfb`, black text, and white background match the source.
+- Image quality and asset fidelity: all nine supplied raster assets are used directly with consistent cover crops; there are no placeholders or code-drawn substitutes.
+- Copy and content: APP and WEB labels, project titles, and design-discipline labels match the supplied reference.
 
-**Required fidelity surfaces**
+## Comparison history
 
-- Fonts and typography: unchanged from the approved lighter name treatment; passed.
-- Spacing and layout rhythm: desktop Hero minimum height reduced from 560 px to 460 px and bottom padding from 112 px to 72 px; the next section now enters the first viewport; passed.
-- Colors and visual tokens: unchanged; passed.
-- Image quality and asset fidelity: portrait remains the original extracted asset; passed.
-- Copy and content: unchanged; passed.
+1. Initial pass found a P2 vertical-density mismatch: the second WEB row sat too low and card typography was heavier/larger than the source.
+2. Fixes: reduced section and heading spacing, tightened category-to-grid spacing and grid row gap, and reduced card title/metadata sizes.
+3. Post-fix evidence: the updated browser render preserves all nine cards, aligns the section rhythm more closely to the reference, has no desktop or mobile horizontal overflow, and reports no browser console warnings or errors.
 
-**Findings**
+## Findings
 
-- No actionable P0, P1, or P2 issues remain for the requested first-viewport composition.
+No actionable P0, P1, or P2 differences remain.
 
-**Comparison history**
+## Interaction and responsive checks
 
-- Earlier P2: excessive Hero blank space kept Selected Impact outside the first viewport.
-- Fix: added a desktop-only 460 px minimum Hero height and 72 px bottom padding; mobile behavior was left unchanged.
-- Post-fix evidence: divider ends at y=524 and Selected Impact is visibly introduced by y=631 in a 720 px viewport.
+- Verified all three linked APP cards expose keyboard-focusable anchors and retain hover feedback.
+- Verified 9 cards render.
+- Verified desktop three-column layout.
+- Verified mobile single-column layout at 390 px with `scrollWidth === clientWidth`.
+- Checked browser console warnings and errors: none.
+- Production build and `git diff --check`: passed.
 
-**Primary checks**
+## Follow-up polish
 
-- Production build passed.
-- No horizontal overflow.
-- Browser logs contain no errors.
-
-**Follow-up Polish**
-
-- None required for this adjustment.
+- P3: exact line wrapping may vary slightly when the remote font is unavailable and the browser falls back to Helvetica/Arial.
 
 final result: passed

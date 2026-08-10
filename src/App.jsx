@@ -21,23 +21,15 @@ const capabilityItemsEn = [
 ]
 
 const workItems = [
-  { title: 'TVBS News CMS', type: 'CMS Redesign, Design System', year: '2026', company: 'TVBS', image: '/assets/project/tvbs-news-cms.png', detail: '重整近二十年的新聞內容工作流程與設計系統。', detailSlug: 'news-cms' },
-  { title: 'TVBS Member System', type: 'System Redesign, Service Design', year: '2025', company: 'TVBS', image: '/assets/detail/member-cover.jpg', detail: '將五大品牌的零散登入需求整合成長期會員策略。', detailSlug: 'member-system' },
-  { title: 'Nutrition Site', type: 'Web UIUX Design, Design System', year: '2025', company: 'TVBS', image: '/assets/project/nutrition-site.png', detail: '建立清楚、一致且可持續擴充的健康內容體驗。' },
-  { title: 'Health 2.0 AI Chatbot', type: 'Web / APP UIUX Design, User Research', year: '2024–2025', company: 'TVBS', image: '/assets/project/health20-wide.jpg', detail: '從研究出發，探索 AI 如何協助使用者找到真正需要的健康答案。', detailSlug: 'health-chatbot' },
-  { title: 'Moment APP', type: 'App Redesign, User Research', year: '2023', company: 'Moment Pet Wellness', image: '/assets/project/moment-pet.png', detail: '優化寵物醫療 App 的產品體驗與介面，讓健康管理流程更直覺、易用。', externalUrl: '/assets/project/Momentapp.jpg' },
-  { title: 'Moodii APP', type: 'App 0–1 Product Design, User Research', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/moodii.png', detail: '從 0–1 打造一個能安心表達情緒的社交產品。', externalUrl: '/assets/project/Moodii_UIUX.jpg' },
-  { title: 'ShapeX APP', type: 'App 0–1 Product Design', year: '2020–2022', company: 'Zoomo Space', image: '/assets/project/shapex.png', detail: '從 0→1 設計隨身運動教練 App，以動作軌跡比對概念，打造直覺的訓練與回饋體驗。', externalUrl: '/assets/project/ShapeX_UIUX.jpg' },
-]
-
-const workDetailsEn = [
-  'Rebuilt two decades of editorial workflows and the design system.',
-  'Unified fragmented login needs across five brands into a long-term membership strategy.',
-  'Created a clear, consistent, and extensible health-content experience.',
-  'Explored how AI can help people find the health answers they actually need.',
-  'Redesigned the pet healthcare app experience and interface to make health management more intuitive and accessible.',
-  'Built a safe social product from 0 to 1 for expressing emotions.',
-  'Designed a personal fitness coach app from 0 to 1, using motion-path comparison to create an intuitive training and feedback experience.',
+  { category: 'APP', title: 'Moment APP', type: 'APP Redesign ｜ User Research', image: '/assets/work/moment-pet 1.jpg', externalUrl: '/assets/project/Momentapp.jpg' },
+  { category: 'APP', title: 'Moodii APP', type: 'APP 0-1 Product Design ｜ User Research', image: '/assets/work/MoodiiApp.jpg', externalUrl: '/assets/project/Moodii_UIUX.jpg' },
+  { category: 'APP', title: 'ShapeX APP', type: 'APP 0-1 Product Design ｜ User Research', image: '/assets/work/ShapeXApp.jpg', externalUrl: '/assets/project/ShapeX_UIUX.jpg' },
+  { category: 'WEB', title: 'TVBS ESG Official Website', type: 'Web UIUX Redesign', image: '/assets/work/202510-esg首頁改版-2.jpg' },
+  { category: 'WEB', title: 'TVBS News FIFA Campaign Site', type: 'Web UIUX Design ｜ Key Visual Design', image: '/assets/work/202605-fifa-2.jpg' },
+  { category: 'WEB', title: 'Health 2.0 Nutrition Official Website', type: 'Web UIUX Design', image: '/assets/work/202412-Nutrition Site.jpg' },
+  { category: 'WEB', title: 'TVBS News GMA36 Campaign Site', type: 'Web UIUX Design ｜ Key Visual Design', image: '/assets/work/202504-金曲-2.jpg' },
+  { category: 'WEB', title: 'TVBS ESG Breakfast Campaign Site', type: 'Web UIUX Design ｜ Key Visual Design', image: '/assets/work/202607-esg早餐特輯-2.jpg' },
+  { category: 'WEB', title: 'Lion Travel Small Town Campaign Site', type: 'Web UIUX Design', image: '/assets/work/2019-travel.jpg' },
 ]
 
 const heroRoles = [
@@ -133,7 +125,7 @@ function App() {
   const lastScrollY = useRef(0)
   const isEnglish = language === 'en'
   const localizedCapabilityItems = capabilityItems.map((item, index) => isEnglish ? { ...item, ...capabilityItemsEn[index], caption: '' } : item)
-  const localizedWorkItems = workItems.map((item, index) => isEnglish ? { ...item, detail: workDetailsEn[index] } : item)
+  const localizedWorkItems = workItems
 
   const changeLanguage = (nextLanguage) => {
     setLanguage(nextLanguage)
@@ -290,27 +282,25 @@ function App() {
           </section>
         </div>
 
-        <section className="work" id="work-experience" ref={workRef} onPointerMove={movePreview} onPointerLeave={() => setActiveWork(null)}>
+        <section className="work" id="work-experience" ref={workRef}>
           <h2 data-reveal>Work / Experience</h2>
-          <div className="work-list" data-reveal>
-            {localizedWorkItems.map((item, index) => {
-              const active = activeWork === index
-              const opensDestination = Boolean(item.detailSlug || item.externalUrl)
-              const rowContent = <>
-                <span className="work-row__main"><strong>{item.title}</strong><small>{item.type}</small><em>{item.detail}</em></span>
-                <span className="work-row__meta"><b>{item.year}</b><small>{item.company}</small></span>
-                <span className="work-row__toggle" aria-hidden="true">{active ? '−' : '+'}</span>
-              </>
-              return (
-                <article className={`work-row ${active ? 'is-active' : ''} ${opensDestination ? 'work-row--link' : ''}`} key={item.title} onPointerEnter={() => setActiveWork(index)}>
+          {['APP', 'WEB'].map((category) => <div className="work-group" data-reveal key={category}>
+            <h3>{category}</h3>
+            <div className="work-grid">
+              {localizedWorkItems.filter((item) => item.category === category).map((item) => {
+                const content = <>
+                  <span className="work-card__image"><img src={item.image} alt={`${item.title} project preview`} loading="lazy" /></span>
+                  <strong>{item.title}</strong>
+                  <small>{item.type}</small>
+                </>
+                return <article className="work-card" key={item.title}>
                   {item.externalUrl
-                    ? <a href={item.externalUrl} target="_blank" rel="noopener noreferrer" aria-label={`${isEnglish ? 'Open' : '開啟'} ${item.title}`}>{rowContent}</a>
-                    : <button type="button" aria-expanded={opensDestination ? undefined : active} aria-label={opensDestination ? `${isEnglish ? 'Open' : '開啟'} ${item.title}` : undefined} onClick={() => openWorkItem(item)}>{rowContent}</button>}
-                  {active && <div className="work-preview" aria-hidden="true"><img src={item.image} alt="" /></div>}
+                    ? <a href={item.externalUrl} target="_blank" rel="noopener noreferrer" aria-label={`${isEnglish ? 'Open' : '開啟'} ${item.title}`}>{content}</a>
+                    : <div>{content}</div>}
                 </article>
-              )
-            })}
-          </div>
+              })}
+            </div>
+          </div>)}
         </section>
 
         <section className="contact" id="contact">
