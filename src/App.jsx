@@ -5,25 +5,26 @@ import StructureProjectDetail from './StructureProjectDetail.jsx'
 import MemberSystemDetail from './MemberSystemDetail.jsx'
 import HealthChatbotDetail from './HealthChatbotDetail.jsx'
 import ResumePage from './ResumePage.jsx'
+import AppProjectDetail from './AppProjectDetail.jsx'
 
 const capabilityItems = [
-  { number: '01', headline: '房間開啟率提升 11%：重構 Moodii 群聊體驗', summary: '從用戶回饋、使用者訪談與產品數據出發，重新定義群聊功能的核心問題與設計目標，並透過快速迭代，讓情緒交流更安心、更容易開始。', tags: ['User Research', 'UX Design'], image: '/assets/figma/understand-source.png', alt: 'Moodii 社交 App 群聊體驗優化' },
-  { number: '02', headline: '重整 20 年內容流程：打造可持續擴充的新聞 CMS', summary: '觀察新聞編輯的操作習慣與需求，重整資訊架構、內容流程與互動規範，讓複雜的後台工作更一致，也為未來功能保留擴充彈性。', tags: ['Information Architecture', 'System Design'], image: '/assets/figma/structure-source.png', alt: 'TVBS News CMS 新聞編輯後台' },
-  { number: '03', headline: '平台參與率最高達 88%：重新定義 AI 健康問答體驗', summary: '結合提問數據分析、使用者訪談與 Prototype 測試，探索 AI 在健康服務中的適合場景，並持續追蹤數據、提升問題與回答品質。', tags: ['Product Discovery', 'UX Research', 'UX Design'], image: '/assets/project/health20-wide.jpg', alt: 'Health 2.0 AI Chatbot 體驗優化' },
-  { number: '04', headline: '整合五大品牌登入體驗：建立會員產品 Roadmap', summary: '盤點跨品牌登入流程與使用痛點，在優化介面體驗的同時整合商業需求，建立一致、可延伸的會員服務策略與產品發展方向。', tags: ['Product Strategy', 'Service Design'], image: '/assets/detail/member-cover.jpg', alt: '會員登入情境畫面' },
+  { number: '01', headline: '房間開啟率提升 11%：透過實際用戶研究優化 Moodii 群聊體驗', summary: '從用戶回饋、使用者訪談與產品數據出發，重新定義群聊功能的核心問題與設計目標，並透過快速迭代，讓情緒交流更安心、更容易開始。', tags: ['User Research', 'UX Design'], image: '/assets/figma/understand-source.png', alt: 'Moodii 社交 App 群聊體驗優化' },
+  { number: '02', headline: '重整 TVBS News 舊後台資訊架構：打造可持續擴充的新聞 CMS', summary: '觀察新聞編輯的操作習慣與需求，重整資訊架構、內容流程與互動規範，讓複雜的後台工作更一致，也為未來功能保留擴充彈性。', tags: ['Information Architecture', 'System Design'], image: '/assets/figma/structure-source.png', alt: 'TVBS News CMS 新聞編輯後台' },
+  { number: '03', headline: '重新定義健康 AI 問答的使用場域，提升平台參與率最高達 88%', summary: '結合提問數據分析、使用者訪談與 Prototype 測試，探索 AI 在健康服務中的適合場景，並持續追蹤數據、提升問題與回答品質。', tags: ['Product Discovery', 'UX Research', 'UX Design'], image: '/assets/project/health20-wide.jpg', alt: 'Health 2.0 AI Chatbot 體驗優化' },
+  { number: '04', headline: 'TVBS 五品牌會員登入改版：平衡使用體驗、系統與商業需求', summary: '盤點跨品牌登入流程與使用痛點，在優化介面體驗的同時整合商業需求，建立一致、可延伸的會員服務策略與產品發展方向。', tags: ['Product Strategy', 'Service Design'], image: '/assets/detail/member-cover.jpg', alt: '會員登入情境畫面' },
 ]
 
 const capabilityItemsEn = [
-  { headline: 'Room activation +11%: Reframing the Moodii group-chat experience', summary: 'Starting from user feedback, interviews, and product data, I redefined the core problem and design goals, then iterated rapidly to make emotional conversations feel safer and easier to begin.', tags: ['User Research', 'UX Design'], alt: 'Moodii social app group chat optimization' },
-  { headline: 'Rebuilding 20 years of workflows: A scalable newsroom CMS', summary: 'I observed editorial habits and needs, then restructured the information architecture, content workflow, and interaction patterns to make complex newsroom work more consistent and extensible.', tags: ['Information Architecture', 'System Design'], alt: 'TVBS News CMS editorial system' },
-  { headline: 'Engagement reached 88%: Redefining the AI health Q&A experience', summary: 'Combining question-data analysis, interviews, and prototype testing, I explored the right role for AI in health services and continuously improved question and answer quality.', tags: ['Product Discovery', 'UX Research', 'UX Design'], alt: 'Health 2.0 AI Chatbot optimization' },
-  { headline: 'Unifying five brand logins: Building the membership roadmap', summary: 'I mapped cross-brand login friction and balanced experience improvements with business needs to create a consistent, extensible membership strategy and product direction.', tags: ['Product Strategy', 'Service Design'], alt: 'Member login experience' },
+  { headline: 'Room activation +11%: Improving Moodii group chat through real user research', summary: 'Starting from user feedback, interviews, and product data, I redefined the core problem and design goals, then iterated rapidly to make emotional conversations feel safer and easier to begin.', tags: ['User Research', 'UX Design'], alt: 'Moodii social app group chat optimization' },
+  { headline: 'Restructuring the legacy TVBS News backend information architecture: A scalable newsroom CMS', summary: 'I observed editorial habits and needs, then restructured the information architecture, content workflow, and interaction patterns to make complex newsroom work more consistent and extensible.', tags: ['Information Architecture', 'System Design'], alt: 'TVBS News CMS editorial system' },
+  { headline: 'Redefining where health AI Q&A creates value, increasing platform engagement to as high as 88%', summary: 'Combining question-data analysis, interviews, and prototype testing, I explored the right role for AI in health services and continuously improved question and answer quality.', tags: ['Product Discovery', 'UX Research', 'UX Design'], alt: 'Health 2.0 AI Chatbot optimization' },
+  { headline: 'Redesigning membership login across five TVBS brands: Balancing experience, systems, and business needs', summary: 'I mapped cross-brand login friction and balanced experience improvements with business needs to create a consistent, extensible membership strategy and product direction.', tags: ['Product Strategy', 'Service Design'], alt: 'Member login experience' },
 ]
 
 const workItems = [
-  { category: 'APP', title: 'Moment APP', type: 'APP Redesign ｜ User Research', image: '/assets/work/moment-pet 1.jpg', externalUrl: '/assets/project/Momentapp.jpg' },
-  { category: 'APP', title: 'Moodii APP', type: 'APP 0-1 Product Design ｜ User Research', image: '/assets/work/MoodiiApp.jpg', externalUrl: '/assets/project/Moodii_UIUX.jpg' },
-  { category: 'APP', title: 'ShapeX APP', type: 'APP 0-1 Product Design ｜ User Research', image: '/assets/work/ShapeXApp.jpg', externalUrl: '/assets/project/ShapeX_UIUX.jpg' },
+  { category: 'APP', title: 'Moment APP', type: 'APP Redesign ｜ User Research', image: '/assets/work/moment-pet 1.jpg', detailSlug: 'moment-app' },
+  { category: 'APP', title: 'Moodii APP', type: 'APP 0-1 Product Design ｜ User Research', image: '/assets/work/MoodiiApp.jpg', detailSlug: 'moodii-app' },
+  { category: 'APP', title: 'ShapeX APP', type: 'APP 0-1 Product Design ｜ User Research', image: '/assets/work/ShapeXApp.jpg', detailSlug: 'shapex-app' },
   { category: 'WEB', title: 'TVBS ESG Official Website', type: 'Web UIUX Redesign', image: '/assets/work/202510-esg首頁改版-2.jpg' },
   { category: 'WEB', title: 'TVBS News FIFA Campaign Site', type: 'Web UIUX Design ｜ Key Visual Design', image: '/assets/work/202605-fifa-2.jpg' },
   { category: 'WEB', title: 'Health 2.0 Nutrition Official Website', type: 'Web UIUX Design', image: '/assets/work/202412-Nutrition Site.jpg' },
@@ -103,10 +104,8 @@ function App() {
   const projectSlug = new URLSearchParams(window.location.search).get('project')
   const [isDetail, setIsDetail] = useState(() => Boolean(projectSlug))
   const [navVisible, setNavVisible] = useState(true)
-  const [activeWork, setActiveWork] = useState(null)
   const [emailCopied, setEmailCopied] = useState(false)
   const [language, setLanguage] = useState(() => window.localStorage.getItem('portfolio-language') === 'en' ? 'en' : 'zh')
-  const workRef = useRef(null)
   const lastScrollY = useRef(0)
   const isEnglish = language === 'en'
   const localizedCapabilityItems = capabilityItems.map((item, index) => isEnglish ? { ...item, ...capabilityItemsEn[index], caption: '' } : item)
@@ -192,14 +191,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const movePreview = (event) => {
-    if (!workRef.current) return
-    const list = workRef.current.querySelector('.work-list')
-    if (!list) return
-    const rect = list.getBoundingClientRect()
-    workRef.current.style.setProperty('--preview-x', `${event.clientX - rect.left}px`)
-  }
-
   const openDetail = (slug = 'group-chat') => {
     window.history.scrollRestoration = 'manual'
     window.location.assign(`${window.location.pathname}?project=${slug}`)
@@ -208,19 +199,6 @@ function App() {
     window.history.scrollRestoration = 'manual'
     window.location.assign(`${window.location.pathname}${hash}`)
   }
-  const openWorkItem = (item) => {
-    if (item.detailSlug) {
-      openDetail(item.detailSlug)
-      return
-    }
-    if (item.externalUrl) {
-      window.open(item.externalUrl, '_blank', 'noopener,noreferrer')
-      return
-    }
-    const itemIndex = localizedWorkItems.indexOf(item)
-    setActiveWork((current) => current === itemIndex ? null : itemIndex)
-  }
-
   useEffect(() => { const pop = () => setIsDetail(new URLSearchParams(window.location.search).get('project') === 'group-chat'); window.addEventListener('popstate', pop); return () => window.removeEventListener('popstate', pop) }, [])
 
   useEffect(() => {
@@ -253,13 +231,13 @@ function App() {
         <div className="language" role="group" aria-label="Language"><button type="button" className={language === 'zh' ? 'is-active' : ''} onClick={() => changeLanguage('zh')} aria-pressed={language === 'zh'}>ZH</button><button type="button" className={language === 'en' ? 'is-active' : ''} onClick={() => changeLanguage('en')} aria-pressed={language === 'en'}>EN</button></div>
       </header>
 
-      {isDetail ? (projectSlug === 'news-cms' ? <StructureProjectDetail language={language} /> : projectSlug === 'member-system' ? <MemberSystemDetail language={language} /> : projectSlug === 'health-chatbot' ? <HealthChatbotDetail language={language} /> : <ProjectDetail language={language} />) : <main>
+      {isDetail ? (['moment-app','moodii-app','shapex-app'].includes(projectSlug) ? <AppProjectDetail slug={projectSlug} language={language} /> : projectSlug === 'news-cms' ? <StructureProjectDetail language={language} /> : projectSlug === 'member-system' ? <MemberSystemDetail language={language} /> : projectSlug === 'health-chatbot' ? <HealthChatbotDetail language={language} /> : <ProjectDetail language={language} />) : <main>
         <div className="portfolio-stage">
           <div className="portfolio-stage__glow" aria-hidden="true"><img src="/assets/figma/gradient-ellipse.svg" alt="" /></div>
           <div className="portfolio-stage__veil" aria-hidden="true" />
           <section className="hero" id="about">
             <HeroRoleCarousel />
-            <p data-reveal>I'm Lan, a Senior Product Designer designing digital products across healthcare, wellness, media, and AI.</p>
+            <p data-reveal>A senior product designer who turns user research and complex product problems into clear, scalable digital experiences. Working across product strategy, UX, and system design.</p>
           </section>
 
           <section className="capabilities" id="selected-work">
@@ -268,9 +246,9 @@ function App() {
           </section>
         </div>
 
-        <section className="work" id="work-experience" ref={workRef}>
-          <h2 data-reveal>Work / Experience</h2>
-          {['APP', 'WEB'].map((category) => <div className="work-group" data-reveal key={category}>
+        <section className="work" id="work-experience">
+          <h2>Work / Experience</h2>
+          {['APP', 'WEB'].map((category) => <div className="work-group" key={category}>
             <h3>{category}</h3>
             <div className="work-grid">
               {localizedWorkItems.filter((item) => item.category === category).map((item) => {
@@ -280,7 +258,9 @@ function App() {
                   <small>{item.type}</small>
                 </>
                 return <article className="work-card" key={item.title}>
-                  {item.externalUrl
+                  {item.detailSlug
+                    ? <a href={`?project=${item.detailSlug}`} onClick={(event) => { event.preventDefault(); openDetail(item.detailSlug) }} aria-label={`${isEnglish ? 'Open' : '開啟'} ${item.title}`}>{content}</a>
+                    : item.externalUrl
                     ? <a href={item.externalUrl} target="_blank" rel="noopener noreferrer" aria-label={`${isEnglish ? 'Open' : '開啟'} ${item.title}`}>{content}</a>
                     : <div>{content}</div>}
                 </article>
@@ -290,12 +270,14 @@ function App() {
         </section>
 
         <section className="contact" id="contact">
-          <h2 data-reveal>Contact</h2>
-          <button className="contact-email" type="button" data-reveal aria-label={isEnglish ? 'Copy email address' : '複製電子信箱'} onClick={async () => {
-            await navigator.clipboard.writeText('vickylan20@gmail.com')
-            setEmailCopied(true)
-            window.setTimeout(() => setEmailCopied(false), 1400)
-          }}>vickylan20@gmail.com{emailCopied && <span className="contact-email__tooltip" role="status">{isEnglish ? 'Copied' : '已複製'}</span>}</button>
+          <div className="contact__inner">
+            <h2>Contact</h2>
+            <button className="contact-email" type="button" aria-label={isEnglish ? 'Copy email address' : '複製電子信箱'} onClick={async () => {
+              await navigator.clipboard.writeText('vickylan20@gmail.com')
+              setEmailCopied(true)
+              window.setTimeout(() => setEmailCopied(false), 1400)
+            }}>vickylan20@gmail.com{emailCopied && <span className="contact-email__tooltip" role="status">{isEnglish ? 'Copied' : '已複製'}</span>}</button>
+          </div>
         </section>
 
         <SiteFooter />

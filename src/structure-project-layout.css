@@ -31,3 +31,6 @@
   .cms-detail .cms-workflow-map,
   .cms-detail .cms-design__gallery { margin-top: 35px; }
 }
+
+/* Keep the CMS title as open as the Group Chat case-study title. */
+.cms-detail .cms-hero h1 { letter-spacing: -.02em; }
