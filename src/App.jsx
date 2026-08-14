@@ -248,8 +248,7 @@ function App() {
 
         <section className="work" id="work-experience">
           <h2>Work / Experience</h2>
-          {['APP', 'WEB'].map((category) => <div className="work-group" key={category}>
-            <h3>{category}</h3>
+          {['APP', 'WEB'].map((category) => <div className={`work-group work-group--${category.toLowerCase()}`} key={category}>
             <div className="work-grid">
               {localizedWorkItems.filter((item) => item.category === category).map((item) => {
                 const content = <>
