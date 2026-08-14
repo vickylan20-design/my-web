@@ -146,10 +146,8 @@
 .work h2{max-width:none;margin:0 0 97px;color:var(--blue);font-size:64px;line-height:1;letter-spacing:-.045em;text-align:center;font-weight:500}
 .work-group{max-width:1440px;margin:0 auto 108px}
 .work-group:last-child{margin-bottom:0}
-.work-group h3{margin:0 0 80px;color:var(--blue);font-size:18px;line-height:1.2;font-weight:650;text-align:center}
-.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(42px,5vw,76px);row-gap:120px}
-.work-group--app .work-grid{grid-template-columns:minmax(0,860px);justify-content:center}
-.work-group--web .work-grid{grid-template-columns:repeat(2,minmax(0,400px));justify-content:center}
+.work-group h3{margin:0 0 18px;color:var(--blue);font-size:18px;line-height:1.2;font-weight:650}
+.work-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:clamp(42px,5vw,76px);row-gap:100px}
 .work-card{min-width:0}
 .work-card>a,.work-card>div{display:block}
 .work-card__image{display:block;width:100%;aspect-ratio:1.72;overflow:hidden;background:#f2f3f5}
@@ -157,8 +155,8 @@
 .work-card strong{display:block;margin-top:20px;font-size:18px;line-height:1.35;font-weight:500}
 .work-card small{display:block;margin-top:12px;font-size:13px;line-height:1.45;font-weight:400}
 .work-card a:focus-visible{outline:2px solid var(--blue);outline-offset:7px}
-@media(max-width:900px){.work{padding-inline:32px}.work h2{margin-bottom:80px}.work-grid{gap:48px 32px}.work-group--web .work-grid{grid-template-columns:repeat(2,minmax(0,400px))}.work-group--app .work-grid{grid-template-columns:minmax(0,860px)}}
-@media(max-width:600px){.work{padding:84px 20px 96px}.work h2{margin-bottom:62px;font-size:52px;text-align:left}.work-group{margin-bottom:76px}.work-group h3{margin-bottom:20px;font-size:15px}.work-grid,.work-group--app .work-grid,.work-group--web .work-grid{grid-template-columns:1fr;row-gap:42px}.work-card strong{margin-top:20px;font-size:18px}.work-card small{margin-top:5px;font-size:13px}}
+@media(max-width:900px){.work{padding-inline:32px}.work h2{margin-bottom:80px}.work-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 32px}}
+@media(max-width:600px){.work{padding:84px 20px 96px}.work h2{margin-bottom:62px;font-size:52px;text-align:left}.work-group{margin-bottom:76px}.work-group h3{margin-bottom:20px;font-size:15px}.work-grid{grid-template-columns:1fr;row-gap:42px}.work-card strong{margin-top:20px;font-size:18px}.work-card small{margin-top:5px;font-size:13px}}
 
 /* Capabilities 01–04: full-width desktop layout with 40px page gutters. */
 @media(min-width:701px){
@@ -201,12 +199,11 @@
 }
 @media(max-width:700px){
   .capabilities__title{margin-bottom:72px;font-size:52px;line-height:1.05}
-  .capabilities,.capability,.capability__content{width:100%;max-width:100%;min-width:0}
   .capability{display:flex;flex-direction:column;align-items:stretch;gap:28px;margin-bottom:100px}
   .capability__visual{width:100%;height:auto;aspect-ratio:1.65}
   .capability__visual>img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
-  .capability__content h2{max-width:100%;font-size:30px;line-height:1.22;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
-  .capability__content>p{max-width:100%;margin-top:20px;line-height:1.7;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+  .capability__content h2{font-size:30px;line-height:1.22}
+  .capability__content>p{margin-top:20px;line-height:1.7}
   .capability__tags{margin-top:24px;gap:18px}
   .capability__tags span{padding:0;font-size:12px}
 }
@@ -223,14 +220,16 @@
 /* Stable Work → Contact boundary. Fixed desktop grid tracks prevent image-hover
    helpers or browser extensions from changing the final row's layout height. */
 @media(min-width:901px){
-  .work-grid{grid-auto-rows:auto;align-items:start}
+  .work-grid{grid-auto-rows:auto;align-items:start;row-gap:120px}
+  .work-group--app .work-grid{grid-template-columns:minmax(0,860px);justify-content:center}
+  .work-group--web .work-grid{grid-template-columns:repeat(2,minmax(0,400px));justify-content:center}
   .work-card{height:auto;min-height:0;overflow:visible;contain:none}
   .work-card>a,.work-card>div{height:auto;overflow:visible}
 }
 @media(min-width:601px) and (max-width:900px){
-  .work-grid{grid-auto-rows:auto;align-items:start}
-  .work-card{height:auto;min-height:0;overflow:visible;contain:none}
-  .work-card>a,.work-card>div{height:auto;overflow:visible}
+  .work-grid{grid-auto-rows:clamp(218px,calc(29vw + 43px),305px);align-items:start}
+  .work-card{height:100%;min-height:0;overflow:hidden;contain:layout paint style}
+  .work-card>a,.work-card>div{height:100%;overflow:hidden}
 }
 
 /* Contact is an isolated, fixed-height section with a single centered inner block. */
@@ -245,5 +244,6 @@
 }
 
 /* Slightly smaller desktop project thumbnails; keep mobile images full width. */
-@media(min-width:601px){.work-group--app .work-card__image{width:860px;max-width:100%}.work-group--web .work-card__image{width:400px;max-width:100%}}
+@media(min-width:601px){.work-card__image{width:92%}}
+@media(min-width:901px){.work-group--app .work-card__image{width:860px;max-width:100%}.work-group--web .work-card__image{width:400px;max-width:100%}}
 @media(max-width:600px){.work-card__image{width:100%}}
