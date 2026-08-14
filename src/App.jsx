@@ -237,7 +237,7 @@ function App() {
           <div className="portfolio-stage__veil" aria-hidden="true" />
           <section className="hero" id="about">
             <HeroRoleCarousel />
-            <p data-reveal>A senior product designer who turns user research and complex product problems into clear, scalable digital experiences. Working across product strategy, UX, and system design.</p>
+            <p data-reveal>{isEnglish ? 'A senior product designer who turns user research and complex product problems into clear, scalable digital experiences. Working across product strategy, UX, and system design.' : '我是 Lan，資深產品設計師，我擅長透過使用者研究拆解複雜的產品問題，轉化為清晰、可擴展的數位體驗。專注於產品策略、使用者體驗與系統設計。'}</p>
           </section>
 
           <section className="capabilities" id="selected-work">
