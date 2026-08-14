@@ -25,3 +25,9 @@
 
 /* Keep the next section visible within the first desktop viewport, as in the source PDF. */
 @media(min-width:701px){.primary-resume__hero{min-height:460px;padding-bottom:72px}}
+
+/* Work items with a named project use a clear title → description hierarchy. */
+.primary-resume__job-project{margin:18px 0 0;font-size:14px;line-height:1.4;font-weight:700}
+.primary-resume__timeline li.primary-resume__job-detail{margin:15px 0 20px}
+.primary-resume__job-detail>.primary-resume__job-detail-title{display:block;margin-bottom:5px;color:#222;font-size:14px;line-height:1.4;font-weight:700}
+.primary-resume__job-detail>span{display:block;color:#777;font-size:12px;line-height:1.65}

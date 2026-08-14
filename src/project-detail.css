@@ -115,3 +115,8 @@
 .groupchat-case__ui-showcase{padding:0 3.75vw 170px;background:#fff}
 .groupchat-case__ui-showcase img{display:block;width:100%;height:auto}
 @media(max-width:800px){.groupchat-case .achievement{padding-bottom:40px}.groupchat-case__ui-showcase{padding-bottom:110px}}
+.project-detail{background:#fff}
+
+/* Project titles share the full content width used by the overview below. */
+.groupchat-case .detail-intro h1{width:100%;font-size:clamp(82px,8.15vw,117px);line-height:.94;letter-spacing:-.035em;white-space:nowrap}
+@media(max-width:700px){.groupchat-case .detail-intro h1{font-size:clamp(43px,12vw,58px);line-height:1;white-space:normal}}

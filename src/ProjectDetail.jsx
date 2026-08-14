@@ -1,6 +1,7 @@
 import React from 'react'
 import './project-detail.css'
 import SiteFooter from './SiteFooter.jsx'
+import FittedProjectTitle from './FittedProjectTitle.jsx'
 
 const interviews = [
   ['sasa.png','Sasa','32歲 社工','為尋找普同感而使用Moodii的群聊功能，但時間差跟匿名的關係，導致話題容易無法繼續，也常常遇到話題終止的尷尬'],
@@ -36,10 +37,10 @@ export default function ProjectDetail({ language = 'zh' }) {
   const isEnglish = language === 'en'
   const interviewItems = isEnglish ? interviewsEn : interviews
   const decisionItems = isEnglish ? decisionsEn : decisions
-  const chartLabels = isEnglish ? ['Room activation\ntakes too long','Three-day auto-close\nis too short','Too little public\nprofile information','Room cards\nlag','Too many silent\nparticipants','No voice-call\nfeature'] : ['開啟群聊時長\n過久','3天自動關閉\n時間過短','公開的個人\n資訊太少','房間卡片卡頓','群聊房中潛水\n的人偏多','缺少語音通話\n功能']
+  const chartLabels = isEnglish ? ['Room activation\ntakes too long','Three-day auto-close\nis too short','Too little public\nprofile information','Room cards\nlag','Too many silent\nparticipants','No voice-call\nfeature'] : ['等待群聊開啟\n等很久','群聊3天就關閉\n太快','公開的個人\n資訊太少','群聊房很卡\n很當','群聊房中潛水\n的人偏多','缺少語音通話\n功能']
   return <main className="project-detail groupchat-case">
     <section className="detail-intro">
-      <h1>Group Chat UX Iteration</h1>
+      <FittedProjectTitle>Group Chat UX Iteration</FittedProjectTitle>
       <div className="detail-intro__copy"><p>{isEnglish ? 'Moodii supports both personal emotional expression and two-way social connection. While direct messages reached 18% usage, group chat remained at only 8%. Through interviews and survey analysis, I balanced growth mechanics with users’ preference for slower emotional connection, then redesigned the homepage hierarchy, room-creation flow, and category system.' : 'Moodii 社交App的主要功能有二，一是單向的情緒抒發，二是雙向的情感交流。然而在私訊功能有18%使用率的情況下，群聊功能僅有8%，透過用戶深度訪談與問卷數據分析，在強制活躍運營規則與使用者慢節奏情緒社交需求之間做權衡取捨，重構首頁資訊層級、開房流程與房間分類機制。'}</p><dl><div><dt>Services</dt><dd>Moodii</dd></div><div><dt>My Role</dt><dd>User Research, UX Design</dd></div><div><dt>Date</dt><dd>2021–2022</dd></div></dl></div>
       <div className="detail-goal-split"><div className="detail-hero detail-hero--single" data-image-reveal><img src="/assets/figma/understand-source.png" alt="Moodii Group Chat UX Iteration"/></div><div className="detail-mobile-goal"><small>Project Goal</small><strong>{isEnglish ? <>Increase Moodii<br/>group-chat usage</> : <>提高 Moodii<br/>群聊功能使用率</>}</strong></div></div>
     </section>

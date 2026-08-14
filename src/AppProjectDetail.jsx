@@ -1,5 +1,6 @@
 import React from 'react'
 import SiteFooter from './SiteFooter.jsx'
+import FittedProjectTitle from './FittedProjectTitle.jsx'
 import './app-project-detail.css'
 
 const projects = {
@@ -45,7 +46,7 @@ export default function AppProjectDetail({ slug, language = 'zh' }) {
 
   return <main className="app-project-detail">
     <section className="app-project-detail__intro">
-      <h1>{project.title}</h1>
+      <FittedProjectTitle>{project.title}</FittedProjectTitle>
       <div className="app-project-detail__overview">
         <p>{project.description[isEnglish ? 'en' : 'zh']}</p>
         <dl>

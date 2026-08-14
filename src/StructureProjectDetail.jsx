@@ -1,5 +1,6 @@
 import React from 'react'
 import SiteFooter from './SiteFooter.jsx'
+import FittedProjectTitle from './FittedProjectTitle.jsx'
 import './structure-project-detail.css'
 import './structure-project-layout.css'
 import './cms-images.css'
@@ -39,7 +40,7 @@ export default function StructureProjectDetail({ language = 'zh' }) {
   const weightSample = isEnglish ? 'Get breaking-news alerts and stay informed wherever you are' : typographyWeightSample
   return <main className="project-detail cms-detail cms-redesign">
     <section className="detail-intro cms-hero">
-      <h1>CMS System Redesign</h1>
+      <FittedProjectTitle>CMS System Redesign</FittedProjectTitle>
       <div className="detail-intro__copy">
         <p>{isEnglish ? 'TVBS News CMS had served editors, reporters, and business teams for nearly twenty years. As content demands grew, the legacy system could no longer support modern workflows, yet a full redesign also imposed a significant learning cost. The project preserved familiar habits while rebuilding the system for sustainable growth.' : 'TVBS News CMS 是一套使用近二十年的新聞編輯後台，同時服務編輯、記者與業務。隨著內容需求持續增加，原有系統逐漸難以支撐現在的工作流程；但對每天高度依賴它的團隊而言，全面改版也意味著重新學習的成本。因此，本次改版從保留既有習慣出發，重新建立可持續擴展的內容管理系統。'}</p>
         <dl><div><dt>Services</dt><dd>TVBS News</dd></div><div><dt>My Role</dt><dd>System Redesign</dd></div><div><dt>Date</dt><dd>2025–2026</dd></div></dl>

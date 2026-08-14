@@ -74,11 +74,16 @@ const experience = [
 ]
 
 const fullExperience = [
-  { company: 'TVBS 聯利媒體', role: 'Senior Product Designer', year: '2023/10—Now', points: ['TVBS 新聞 CMS 內容管理平台改版設計', '健康2.0 Web／App 使用者研究、數據分析與體驗介面設計', '健康2.0 AI Chatbot 功能規劃與體驗介面設計', 'TVBS 會員服務體驗優化設計'] },
-  { company: 'Moment Pet Wellness', role: 'Product Designer', year: '2022/6—2023/7', points: ['App 改版體驗介面設計，建立新 Design System', 'App 使用者研究與使用者訪談'] },
-  { company: 'Zoomo Space Inc', role: 'UI/UX Designer', year: '2020/6—2022/4', points: ['Moodii App 0→1 UI/UX 設計', 'ShapeX App 0→1 UI/UX 設計', 'App Store／Google Play Store 皆取得 4 分以上評分'] },
-  { company: '雄獅旅遊', role: 'Web Designer', year: '2018/10—2020/5', points: ['雄獅旅展主視覺、活動網站與刊物設計', '台灣觀光局合作網站設計', '欣傳媒合作網站設計'] },
-  { company: 'TCY Cosmetics', role: 'Graphic Designer', year: '2016/4—2018/10', points: ['Mollifix、Polynia 品牌主視覺、Banner 與活動頁設計', '好日子平台 Banner、活動頁與影片製作'] },
+  { company: 'TVBS 聯利媒體', role: 'Senior Product Designer', year: '2023/10—Now', points: [
+    { title: 'TVBS News CMS｜大型 Legacy System 改版', detail: '主導近 20 年 CMS 後台改版，透過使用者訪談重新梳理資訊架構、核心操作流程與設計規範，在既有使用習慣、商業需求與技術限制間提出可落地的設計方案。' },
+    { title: '健康 2.0｜Web／App 產品優化', detail: '負責 Web／App 使用者研究、數據分析與產品體驗設計，從使用行為與需求中找出體驗問題，持續進行產品優化與迭代。' },
+    { title: '健康 2.0｜AI Chatbot 服務優化', detail: '參與 AI Chatbot 產品研究與體驗規劃，透過使用者研究、提問行為分析與 Prototype 測試找出使用障礙，並將研究洞察轉化為產品優化方案。' },
+    { title: 'Product Discovery & Validation', detail: '透過 Design Sprint 將使用者需求與痛點轉化為可驗證方案，從問題定義、概念發想到 Prototype 驗證，協助團隊快速確認產品方向。' },
+  ] },
+  { company: 'Moment Pet Wellness', role: 'Product Designer', year: '2022/6—2023/7', heading: 'Moment App｜Product Redesign & User Research', points: ['使用者訪談與研究梳理產品使用問題。', 'App UX／UI 改版與核心體驗優化。', '建立新版 Design System，提升產品介面一致性與後續設計延展性。'] },
+  { company: 'Zoomo Space Inc', role: 'UI/UX Designer', year: '2020/6—2022/4', heading: 'Moodii／ShapeX｜0→1 App Product Design', points: ['參與產品需求、用戶研究、核心功能規劃，梳理資訊架構與主要使用流程。', '負責 UX／UI 設計與 Prototype，與 PM、RD 協作推進產品從概念至上線。', '兩款 App 於 App Store／Google Play 評分皆達 4 分以上。'] },
+  { company: '雄獅旅遊', role: 'Web Designer', year: '2018/10—2020/5', points: ['負責旅展主視覺與數位內容設計。', '參與觀光局、欣傳媒等合作專案之網站與視覺設計。'] },
+  { company: 'TCY Cosmetics', role: 'Graphic Designer', year: '2016/4—2018/10', points: ['負責 Mollifix、Polynia 等品牌數位 KV 視覺。', '活動頁與行銷素材設計。', '品牌影音內容製作。'] },
   { company: '台灣文摘', role: 'Graphic Designer', year: '2015/4—2016/4', points: ['中文觀光季刊《美好九州》排版設計', '日文月刊《な～るほど・ザ・台湾》排版設計', '中英日《大台北觀光地圖》視覺設計'] },
 ]
 
@@ -103,11 +108,16 @@ const primaryResume = {
       ['Advanced the team’s AI design capability', 'Facilitated internal Lovart workshops attended by more than 50 colleagues.'],
     ],
     experience: [
-      { company: 'TVBS Media', role: 'Senior Product Designer', year: 'Oct 2023—Present', points: ['Redesigned the TVBS News content management system', 'Led user research, data analysis, and experience design for Health 2.0 Web and App', 'Planned features and designed the experience for the Health 2.0 AI Chatbot', 'Optimized the TVBS membership service experience'] },
-      { company: 'Moment Pet Wellness', role: 'Product Designer', year: 'Jun 2022—Jul 2023', points: ['Redesigned the mobile app experience and established a new design system', 'Conducted user research and interviews'] },
-      { company: 'Zoomo Space Inc', role: 'UI/UX Designer', year: 'Jun 2020—Apr 2022', points: ['Designed Moodii App from 0 to 1', 'Designed ShapeX App from 0 to 1', 'Both apps achieved ratings above 4 on the App Store and Google Play'] },
-      { company: 'Lion Travel', role: 'Web Designer', year: 'Oct 2018—May 2020', points: ['Designed campaign identities, event websites, and publications', 'Designed collaborative websites for the Taiwan Tourism Bureau', 'Designed collaborative websites for XinMedia'] },
-      { company: 'TCY Cosmetics', role: 'Graphic Designer', year: 'Apr 2016—Oct 2018', points: ['Created brand visuals, banners, and campaign pages for Mollifix and Polynia', 'Produced banners, campaign pages, and videos for the Good Day platform'] },
+      { company: 'TVBS Media', role: 'Senior Product Designer', year: 'Oct 2023—Present', points: [
+        { title: 'TVBS News CMS | Large-scale legacy-system redesign', detail: 'Led the redesign of a nearly 20-year-old CMS. Used user interviews to restructure the information architecture, core workflows, and design standards, balancing existing habits, business needs, and technical constraints to deliver an implementable solution.' },
+        { title: 'Health 2.0 | Web and app optimization', detail: 'Led user research, data analysis, and product experience design, identifying usability problems through behavior and user needs to support continuous product iteration.' },
+        { title: 'Health 2.0 | AI Chatbot service optimization', detail: 'Contributed to product research and experience planning. Used user research, question-behavior analysis, and prototype testing to identify barriers and translate insights into product improvements.' },
+        { title: 'Product Discovery & Validation', detail: 'Used Design Sprints to turn user needs and pain points into testable solutions, moving from problem definition and concept development to prototype validation to help the team confirm product direction quickly.' },
+      ] },
+      { company: 'Moment Pet Wellness', role: 'Product Designer', year: 'Jun 2022—Jul 2023', heading: 'Moment App | Product Redesign & User Research', points: ['Conducted user interviews and research to identify product usability problems.', 'Redesigned the app UX/UI and optimized the core experience.', 'Established a new design system to improve interface consistency and support future design expansion.'] },
+      { company: 'Zoomo Space Inc', role: 'UI/UX Designer', year: 'Jun 2020—Apr 2022', heading: 'Moodii / ShapeX | 0→1 App Product Design', points: ['Contributed to product requirements, user research, and core feature planning, defining the information architecture and primary user flows.', 'Owned UX/UI design and prototyping, collaborating with PM and engineering to take products from concept to launch.', 'Both apps achieved ratings above 4 on the App Store and Google Play.'] },
+      { company: 'Lion Travel', role: 'Web Designer', year: 'Oct 2018—May 2020', points: ['Designed key visuals and digital content for travel exhibitions.', 'Designed websites and visual assets for collaborative projects with the Taiwan Tourism Bureau, XinMedia, and other partners.'] },
+      { company: 'TCY Cosmetics', role: 'Graphic Designer', year: 'Apr 2016—Oct 2018', points: ['Created digital key visuals for brands including Mollifix and Polynia.', 'Designed campaign pages and marketing assets.', 'Produced branded video content.'] },
       { company: 'Taiwan Panorama', role: 'Graphic Designer', year: 'Apr 2015—Apr 2016', points: ['Editorial design for the Chinese tourism quarterly Beautiful Kyushu', 'Editorial design for the Japanese monthly Naruhodo The Taiwan', 'Visual design for the multilingual Greater Taipei Tourist Map'] },
     ],
     ai: [
@@ -192,7 +202,7 @@ function PrimaryResume({ pdf }) {
       </div>
 
       <ResumeEditorialSection number="02" title="Work Experience">
-        <div className="primary-resume__timeline">{copy.experience.map((item) => <article key={item.company}><div className="primary-resume__job-head"><div><h3>{item.company}</h3><strong>{item.role}</strong></div><time>{item.year}</time></div><ul>{item.points.map(point => <li key={point}>{point}</li>)}</ul></article>)}</div>
+        <div className="primary-resume__timeline">{copy.experience.map((item) => <article key={item.company}><div className="primary-resume__job-head"><div><h3>{item.company}</h3><strong>{item.role}</strong></div><time>{item.year}</time></div>{item.heading && <h4 className="primary-resume__job-project">{item.heading}</h4>}<ul>{item.points.map(point => typeof point === 'string' ? <li key={point}>{point}</li> : <li className="primary-resume__job-detail" key={point.title}><span className="primary-resume__job-detail-title">{point.title}</span><span>{point.detail}</span></li>)}</ul></article>)}</div>
       </ResumeEditorialSection>
 
       <ResumeEditorialSection number="03" title="AI Design Workflow">

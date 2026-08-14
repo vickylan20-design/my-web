@@ -1,2 +1,2 @@
-/* The case-study blue wash resolves to white before the later decisions. */
-.chatbot-case { background: linear-gradient(180deg, #f8f7f5 0%, #eef3ff 48%, #fff 68%, #fff 100%); }
+/* Keep the case-study canvas consistently white. */
+.chatbot-case { background: #fff; }

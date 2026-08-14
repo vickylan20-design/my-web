@@ -1,5 +1,6 @@
 import React from 'react'
 import SiteFooter from './SiteFooter.jsx'
+import FittedProjectTitle from './FittedProjectTitle.jsx'
 import './health-chatbot-detail.css'
 import './health-chatbot-chart-fix.css'
 import './health-chatbot-background.css'
@@ -48,7 +49,7 @@ export default function HealthChatbotDetail({ language = 'zh' }) {
   const localizedTableRows = isEnglish ? tableRowsEn : tableRows
   return <main className="project-detail chatbot-case">
     <section className="detail-intro chatbot-case__intro">
-      <h1>AI Chatbot UX Design</h1>
+      <FittedProjectTitle>AI Chatbot UX Design</FittedProjectTitle>
       <div className="detail-intro__copy">
         <p>{isEnglish ? 'Health 2.0 launched an AI Chatbot, but it represented only 2% of total usage. The problem was not a lack of health needs; users simply did not know how to begin asking. The project examined question behavior from research through product design and validation.' : 'Health 2.0 APP 推出 AI Chatbot 服務，但實際使用率只佔整體的 2%。觀察產品使用情況後發現，真正的問題並非使用者沒有健康需求，而是不知道該如何開始提問。專案以提升 AI Chatbot 使用率為目標，重新檢視使用者提出健康問題的行為模式，從研究、產品設計到驗證。'}</p>
         <dl><div><dt>Services</dt><dd>TVBS Health 2.0</dd></div><div><dt>My Role</dt><dd>User Research, UX Design</dd></div><div><dt>Date</dt><dd>2024–2025</dd></div></dl>

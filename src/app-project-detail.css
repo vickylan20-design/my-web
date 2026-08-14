@@ -1,6 +1,7 @@
 .app-project-detail{padding-top:64px;color:#111;background:#fff;font-family:"Google Sans Flex","Noto Sans TC","Helvetica Neue",Arial,sans-serif}
 .app-project-detail__intro{padding:70px 3.75vw 76px}
 .app-project-detail__intro h1{margin:0;color:var(--blue);font-size:clamp(76px,8.9vw,128px);line-height:1;letter-spacing:-.025em;font-weight:500}
+.app-project-detail__intro h1{width:100%;font-size:clamp(120px,17vw,230px);line-height:.94;letter-spacing:-.035em;white-space:nowrap}
 .app-project-detail__overview{margin-top:62px;display:grid;grid-template-columns:minmax(0,760px) 410px;justify-content:space-between;gap:80px;align-items:start}
 .app-project-detail__overview>p{margin:0;font-size:18px;line-height:1.8;font-weight:400}
 .app-project-detail__overview dl{margin:0;font-size:14px}
@@ -13,7 +14,7 @@
 @media(max-width:800px){
   .app-project-detail{padding-top:58px}
   .app-project-detail__intro{padding:54px 20px 48px}
-  .app-project-detail__intro h1{font-size:clamp(52px,15vw,76px);line-height:1.02}
+  .app-project-detail__intro h1{font-size:clamp(58px,18.5vw,94px);line-height:.96;letter-spacing:-.025em;white-space:normal}
   .app-project-detail__overview{margin-top:42px;display:block}
   .app-project-detail__overview>p{font-size:16px;line-height:1.75}
   .app-project-detail__overview dl{margin-top:34px}
