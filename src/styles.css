@@ -247,3 +247,18 @@
 @media(min-width:601px){.work-card__image{width:92%}}
 @media(min-width:901px){.work-group--app .work-card__image{width:860px;max-width:100%}.work-group--web .work-card__image{width:400px;max-width:100%}}
 @media(max-width:600px){.work-card__image{width:100%}}
+
+/* Side-project ticker between selected case studies and work experience. */
+.side-project-marquee{width:100%;margin-bottom:110px;background:#fff}
+.side-project-marquee>h2{margin:0;padding:0 var(--pad) 28px;color:var(--blue);font-size:22px;line-height:1.25;font-weight:500;white-space:nowrap}
+.side-project-marquee__viewport{overflow:hidden;border-top:1px solid #dedede;border-bottom:1px solid #dedede}
+.side-project-marquee__track{display:flex;width:max-content;animation:side-project-marquee 34s linear infinite;will-change:transform}
+.side-project-marquee:hover .side-project-marquee__track{animation-play-state:paused}
+.side-project-marquee__group{display:flex;flex:none}
+.side-project-marquee__item{height:150px;padding:20px 34px;display:grid;grid-template-columns:178px auto 18px;align-items:center;gap:22px;border-right:1px solid #dedede;white-space:nowrap}
+.side-project-marquee__item img{width:178px;height:108px;object-fit:cover}
+.side-project-marquee__item strong{font-size:18px;line-height:1.2;font-weight:500}
+.side-project-marquee__item span{color:var(--blue);font-size:17px}
+@keyframes side-project-marquee{to{transform:translateX(-50%)}}
+@media(max-width:700px){.side-project-marquee{margin-bottom:64px}.side-project-marquee>h2{padding:0 20px 20px;font-size:16px}.side-project-marquee__item{height:112px;padding:14px 22px;grid-template-columns:120px auto 14px;gap:15px}.side-project-marquee__item img{width:120px;height:76px}.side-project-marquee__item strong{font-size:14px}.side-project-marquee__item span{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.side-project-marquee__track{animation-play-state:paused}}

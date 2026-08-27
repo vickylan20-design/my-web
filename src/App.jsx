@@ -33,6 +33,14 @@ const workItems = [
   { category: 'WEB', title: 'Lion Travel Small Town Campaign Site', type: 'Web UIUX Design', image: '/assets/work/2019-travel.jpg' },
 ]
 
+const sideProjectItems = [
+  { title: 'Watch & Move', image: '/assets/side-project/watch-and-move.jpg', url: 'https://python-bulb-40024547.figma.site/' },
+  { title: 'Protein Calculator', image: '/assets/side-project/protein-calculator.jpg', url: 'https://protein2026.vercel.app/' },
+  { title: 'Body Check-in', image: '/assets/side-project/body-check-in.png', url: 'https://blot-queue-15124455.figma.site/' },
+  { title: 'Cat Hunting Game', image: '/assets/side-project/cat-hunting-game.png', url: 'https://cat-games-five.vercel.app/' },
+  { title: 'Finance Vibe', image: '/assets/side-project/finance-vibe.png', url: 'https://point-radial-41843301.figma.site/' },
+]
+
 const heroRoles = [
   { title: 'Product Designer', lines: ['Product', 'Designer'], image: '/assets/figma/myrole_1.jpg', alt: 'Lan 作為產品設計師的工作情境' },
   { title: 'User Researcher', lines: ['User', 'Researcher'], image: '/assets/figma/myrole_2.jpg', alt: 'Lan 進行使用者研究的工作情境' },
@@ -94,6 +102,12 @@ function Capability({ item, onOpen, id }) {
       </div>
     </article>
   )
+}
+
+function SideProjectMarquee({ isEnglish }) {
+  const renderGroup = (isDuplicate = false) => <div className="side-project-marquee__group" aria-hidden={isDuplicate || undefined}>{sideProjectItems.map((item) => <a className="side-project-marquee__item" href={item.url} target="_blank" rel="noreferrer" tabIndex={isDuplicate ? -1 : undefined} key={`${isDuplicate ? 'duplicate-' : ''}${item.title}`}><img src={item.image} alt={isDuplicate ? '' : `${item.title} preview`} loading="lazy" /><strong>{item.title}</strong><span aria-hidden="true">↗</span></a>)}</div>
+
+  return <section className="side-project-marquee" id="side-projects" aria-label="Side projects and experiments"><h2>{isEnglish ? 'Ideas, Rapidly Prototyped with AI' : '用 AI，讓想法快速成形'}</h2><div className="side-project-marquee__viewport"><div className="side-project-marquee__track">{renderGroup()}{renderGroup(true)}</div></div></section>
 }
 
 function App() {
@@ -245,6 +259,8 @@ function App() {
             {localizedCapabilityItems.map((item) => <Capability item={item} onOpen={item.number === '01' ? () => openDetail('group-chat') : item.number === '02' ? () => openDetail('news-cms') : item.number === '03' ? () => openDetail('health-chatbot') : item.number === '04' ? () => openDetail('member-system') : undefined} key={item.number} />)}
           </section>
         </div>
+
+        <SideProjectMarquee isEnglish={isEnglish} />
 
         <section className="work" id="work-experience">
           <h2>Work / Experience</h2>
