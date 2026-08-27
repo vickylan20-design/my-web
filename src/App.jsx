@@ -34,11 +34,11 @@ const workItems = [
 ]
 
 const sideProjectItems = [
-  { title: 'Watch & Move', image: '/assets/side-project/watch-and-move.jpg', url: 'https://python-bulb-40024547.figma.site/' },
-  { title: 'Protein Calculator', image: '/assets/side-project/protein-calculator.jpg', url: 'https://protein2026.vercel.app/' },
-  { title: 'Body Check-in', image: '/assets/side-project/body-check-in.png', url: 'https://blot-queue-15124455.figma.site/' },
-  { title: 'Cat Hunting Game', image: '/assets/side-project/cat-hunting-game.png', url: 'https://cat-games-five.vercel.app/' },
-  { title: 'Finance Vibe', image: '/assets/side-project/finance-vibe.png', url: 'https://point-radial-41843301.figma.site/' },
+  { titleEn: 'Watch & Move', titleZh: 'Watch & Move', tagsEn: ['#Health Concept', '#Exercise'], tagsZh: ['#健康提案', '#運動'], image: '/assets/side-project/watch-and-move.jpg', url: 'https://python-bulb-40024547.figma.site/' },
+  { titleEn: 'Protein Calculator', titleZh: '蛋白質計算器', tagsEn: ['#Health Concept', '#Nutrition'], tagsZh: ['#健康提案', '#飲食'], image: '/assets/side-project/protein-calculator.jpg', url: 'https://protein2026.vercel.app/' },
+  { titleEn: 'Body Check-in', titleZh: '身體放鬆紀錄', tagsEn: ['#Health Concept', '#Stress'], tagsZh: ['#健康提案', '#壓力'], image: '/assets/side-project/body-check-in.png', url: 'https://blot-queue-15124455.figma.site/' },
+  { titleEn: 'Cat Hunting Game', titleZh: '貓咪狩獵遊戲', tagsEn: ['#Game'], tagsZh: ['#遊戲'], image: '/assets/side-project/cat-hunting-game.png', url: 'https://cat-games-five.vercel.app/' },
+  { titleEn: 'Finance Vibe', titleZh: '財經 Vibe', tagsEn: ['#AI Hackathon', '#Taiwan Stocks'], tagsZh: ['#AI Hackathon', '#台股'], image: '/assets/side-project/finance-vibe.png', url: 'https://point-radial-41843301.figma.site/' },
 ]
 
 const heroRoles = [
@@ -105,7 +105,11 @@ function Capability({ item, onOpen, id }) {
 }
 
 function SideProjectMarquee({ isEnglish }) {
-  const renderGroup = (isDuplicate = false) => <div className="side-project-marquee__group" aria-hidden={isDuplicate || undefined}>{sideProjectItems.map((item) => <a className="side-project-marquee__item" href={item.url} target="_blank" rel="noreferrer" tabIndex={isDuplicate ? -1 : undefined} key={`${isDuplicate ? 'duplicate-' : ''}${item.title}`}><img src={item.image} alt={isDuplicate ? '' : `${item.title} preview`} loading="lazy" /><strong>{item.title}</strong><span aria-hidden="true">↗</span></a>)}</div>
+  const renderGroup = (isDuplicate = false) => <div className="side-project-marquee__group" aria-hidden={isDuplicate || undefined}>{sideProjectItems.map((item) => {
+    const title = isEnglish ? item.titleEn : item.titleZh
+    const tags = isEnglish ? item.tagsEn : item.tagsZh
+    return <a className="side-project-marquee__item" href={item.url} target="_blank" rel="noreferrer" tabIndex={isDuplicate ? -1 : undefined} key={`${isDuplicate ? 'duplicate-' : ''}${item.titleEn}`}><img src={item.image} alt={isDuplicate ? '' : `${title} preview`} loading="lazy" /><span className="side-project-marquee__copy"><strong>{title}</strong><small>{tags.map((tag) => <span key={tag}>{tag}</span>)}</small></span><span className="side-project-marquee__arrow" aria-hidden="true">↗</span></a>
+  })}</div>
 
   return <section className="side-project-marquee" id="side-projects" aria-label="Side projects and experiments"><h2>{isEnglish ? 'Ideas, Rapidly Prototyped with AI' : '用 AI，讓想法快速成形'}</h2><div className="side-project-marquee__viewport"><div className="side-project-marquee__track">{renderGroup()}{renderGroup(true)}</div></div></section>
 }
