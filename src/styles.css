@@ -208,10 +208,10 @@
   .capability__tags span{padding:0;font-size:12px}
 }
 
-/* Hero introduction: full-width editorial statement. */
+/* Hero introduction: left-aligned text column matching the design. */
 @media(min-width:701px){
   .hero{height:auto;padding-bottom:100px}
-  .hero>p{margin:110px 40px 0;width:calc(100% - 80px);max-width:none;font-size:clamp(26px,2.5vw,34px);line-height:1.35;letter-spacing:.015em;font-weight:500}
+  .hero>p{margin:110px 0 0 3.9vw;width:min(921px,64vw);max-width:calc(100% - 7.8vw);font-size:clamp(26px,2.5vw,34px);line-height:1.35;letter-spacing:.015em;font-weight:500}
 }
 @media(max-width:700px){
   .hero>p{font-size:20px;line-height:1.4;letter-spacing:.015em}

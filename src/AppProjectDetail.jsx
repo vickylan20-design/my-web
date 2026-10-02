@@ -2,10 +2,11 @@ import React from 'react'
 import SiteFooter from './SiteFooter.jsx'
 import FittedProjectTitle from './FittedProjectTitle.jsx'
 import './app-project-detail.css'
+import MomentOptimization from './MomentOptimization.jsx'
 
 const projects = {
   'moment-app': {
-    title: 'Moment APP',
+    title: 'Moment APP Redesign',
     service: 'Moment',
     role: 'APP Redesign, User Research',
     date: '2023',
@@ -59,6 +60,7 @@ export default function AppProjectDetail({ slug, language = 'zh' }) {
     <figure className="app-project-detail__case-image">
       <img src={project.image} alt={`${project.title} case study`} />
     </figure>
+    {slug === 'moment-app' && <MomentOptimization isEnglish={isEnglish} />}
     <SiteFooter />
   </main>
 }

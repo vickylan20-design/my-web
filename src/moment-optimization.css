@@ -1,0 +1,31 @@
+.moment-case{width:min(1360px,calc(100% - 7.5vw));margin:0 auto;color:#111}
+.moment-case__section{padding-top:140px}
+.moment-case h2{margin:0 0 72px;color:var(--blue);font-size:clamp(40px,4.64vw,67px);line-height:1.08;font-weight:500;letter-spacing:-.03em}
+.moment-case__row{display:grid;grid-template-columns:minmax(180px,28%) minmax(0,1fr);gap:8%;align-items:start}
+.moment-case h3{margin:0;font-size:24px;line-height:1.5;font-weight:500}
+.moment-case p,.moment-case li{font-size:17px;line-height:1.85;font-weight:400}
+.moment-case p{margin:0}.moment-case p+p{margin-top:24px}
+.moment-case__problems{padding-left:24px;margin:32px 0 0}.moment-case__problems li{padding:16px 0 16px 8px;border-bottom:1px solid #dedede}
+.moment-case__decisions article{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start;padding:48px 0 72px;border-top:1px solid #dedede}
+.moment-case__decisions .moment-case__row{display:flex;flex-direction:column;gap:32px}
+.moment-case__number{display:block;color:var(--blue);font-size:30px;margin-bottom:18px}
+.moment-case .moment-case__problem{color:#666;font-size:15px}
+.moment-case__comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:0;padding:28px;background:#f6f6f6}
+.moment-case figure{margin:0}.moment-case__comparison figure{display:flex;flex-direction:column;align-items:center;gap:22px}
+.moment-case__comparison figcaption{font-size:15px;font-weight:500}
+.moment-case__comparison img{display:block;width:100%;max-width:220px;height:auto;}
+.moment-case__comparison--single{grid-template-columns:1fr}.moment-case__comparison--single img{max-width:320px}
+.moment-case__result{padding-bottom:140px}
+.moment-case__feedback{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin:64px 0 0;align-items:stretch}
+.moment-case .moment-case__quote{display:flex;flex-direction:column;padding:30px 26px;background:#f7f8fc;border:1px solid #e7eaf2;border-radius:24px}
+.moment-case__quote-mark{height:52px;color:var(--blue);font-family:Georgia,serif;font-size:76px;line-height:1}
+.moment-case__quote blockquote{margin:20px 0 32px;flex:1}
+.moment-case__quote blockquote p{font-size:15px;line-height:1.85;color:#333}
+.moment-case__quote figcaption{display:flex;align-items:center;gap:12px}
+.moment-case__quote-avatar{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:50%;object-fit:cover;background:#e7edff}
+.moment-case__quote figcaption strong{display:block;font-size:14px;font-weight:500}.moment-case__quote figcaption div>span{display:block;margin-top:4px;color:#666;font-size:12px;line-height:1.5}
+@media(max-width:1000px){.moment-case__decisions article{gap:36px}.moment-case__comparison{gap:20px;padding:20px}.moment-case .moment-case__quote{padding:24px 18px}.moment-case__feedback{gap:16px}}
+@media(max-width:800px){.moment-case{width:calc(100% - 40px)}.moment-case__section{padding-top:88px}.moment-case h2{margin-bottom:42px;font-size:40px}.moment-case__row{grid-template-columns:1fr;gap:24px}.moment-case h3{font-size:21px}.moment-case p,.moment-case li{font-size:16px;line-height:1.75}.moment-case__decisions article{grid-template-columns:1fr;gap:28px;padding:32px 0 48px}.moment-case__decisions .moment-case__row{gap:24px}.moment-case__number{font-size:26px;margin-bottom:10px}.moment-case__comparison{margin:0;padding:20px 14px;gap:18px}.moment-case__comparison figure{gap:16px}.moment-case__comparison figcaption{font-size:13px}.moment-case__feedback{gap:28px;grid-template-columns:1fr;margin-top:40px}.moment-case__result{padding-bottom:88px}}
+
+.moment-case__quote:first-child .moment-case__quote-avatar{object-position:50% 25%}
+.moment-case__quote:last-child .moment-case__quote-avatar{object-position:65% 40%}
