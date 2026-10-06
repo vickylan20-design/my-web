@@ -93,10 +93,13 @@ export default function HealthChatbotDetail({ language = 'zh' }) {
   return <main className="project-detail chatbot-case">
     <section className="detail-intro chatbot-case__intro">
       <FittedProjectTitle>AI Chatbot UX Design</FittedProjectTitle>
-      <p className="chatbot-case__subtitle">{copy.subtitle}</p>
       <div className="detail-intro__copy">
         <p>{copy.intro}</p>
         <dl><div><dt>Services</dt><dd>TVBS Health 2.0</dd></div><div><dt>My Role</dt><dd>User Research, UX Design</dd></div><div><dt>Date</dt><dd>{copy.date}</dd></div></dl>
+      </div>
+      <div className="chatbot-case__goal">
+        <div className="chatbot-case__goal-image" data-image-reveal><img src="/assets/project/health20-wide.jpg" alt={isEnglish ? 'Reading a Health 2.0 article on a phone' : '使用手機閱讀健康 2.0 文章'} /></div>
+        <div className="chatbot-case__goal-copy"><small>Project Goal</small><strong>{copy.goal}</strong></div>
       </div>
       <dl className="chatbot-case__summary">{copy.summary.map(({ value, mobileValue, label, description, mobileDescription }) => <div key={label}>
         <dt>{label}</dt><dd>
@@ -106,17 +109,12 @@ export default function HealthChatbotDetail({ language = 'zh' }) {
           {mobileDescription && <span className="chatbot-case__summary-compact">{mobileDescription}</span>}
         </dd>
       </div>)}</dl>
-      <div className="chatbot-case__goal">
-        <div className="chatbot-case__goal-image" data-image-reveal><img src="/assets/project/health20-wide.jpg" alt={isEnglish ? 'Reading a Health 2.0 article on a phone' : '使用手機閱讀健康 2.0 文章'} /></div>
-        <div className="chatbot-case__goal-copy"><small>Project Goal</small><strong>{copy.goal}</strong></div>
-      </div>
     </section>
 
     <CaseNavigation items={copy.navigation} isEnglish={isEnglish} />
 
     <CaseSection id="problem" number="01" label="PROBLEM & DATA" title={copy.problemTitle}>
       <p className="chatbot-case__body-copy">{copy.problemCopy}</p>
-      <p className="chatbot-case__note">{copy.baselineNote}</p>
       <div className="chatbot-case__data-chart" role="img" aria-label={copy.data.map(row => `${row[0]} ${row[3]}`).join('；')}>
         {copy.data.map(([label, , , share, value]) => <div className="chatbot-case__data-row" key={label} aria-hidden="true">
           <span>{label}</span><div className="chatbot-case__data-track"><i style={{width: `${value / 45 * 100}%`}} /></div><b>{share}</b>

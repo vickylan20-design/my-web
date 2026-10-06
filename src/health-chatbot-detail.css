@@ -2,11 +2,10 @@
 .site-nav.is-visible + .chatbot-case { --case-nav-top: var(--case-header-height); }
 .site-shell:has(> .chatbot-case) > .site-nav { background: #fff; }
 .chatbot-case .detail-intro h1 { width: 100%; font-size: clamp(88px,9.35vw,135px); line-height: .94; letter-spacing: -.035em; white-space: nowrap; }
-.chatbot-case__subtitle { margin: 32px 0 0; font-size: clamp(24px,2.2vw,34px); line-height: 1.5; font-weight: 500; }
 .chatbot-case .detail-intro__copy { margin-top: 40px; grid-template-columns: minmax(0,740px) minmax(260px,380px); gap: 56px; }
 .chatbot-case .detail-intro__copy > p { font-size: 18px; line-height: 1.85; }
 .chatbot-case .detail-intro dl { line-height: 1.65; }
-.chatbot-case .chatbot-case__summary { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin: 52px 0 0; padding: 30px 0; border-block: 1px solid var(--case-line); }
+.chatbot-case .chatbot-case__summary { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin: 52px 0 0; padding: 30px 0; }
 .chatbot-case .chatbot-case__summary > div { position: relative; display: flex; flex-direction: column; gap: 14px; min-width: 0; border-left: 2px solid var(--blue); padding-left: 22px; margin: 0; }
 .chatbot-case__summary > div:not(:last-child)::after { content: '→'; position: absolute; right: -24px; top: 50%; color: var(--blue); font-size: 20px; }
 .chatbot-case__summary dt { color: var(--blue); font-size: 15px; font-weight: 500; }
@@ -103,7 +102,6 @@
 @media (max-width:800px) {
   .chatbot-case { --case-tab-height: 56px; --case-section-gap: 76px; }
   .chatbot-case .detail-intro h1 { font-size: clamp(43px,12.5vw,62px); line-height: 1; white-space: normal; }
-  .chatbot-case__subtitle { font-size: 24px; margin-top: 26px; }
   .chatbot-case .detail-intro__copy { display: block; margin-top: 28px; }
   .chatbot-case .detail-intro__copy > p { font-size: 16px; }
   .chatbot-case .detail-intro dl { margin-top: 30px; }

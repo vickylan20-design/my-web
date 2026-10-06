@@ -3,7 +3,6 @@
 // Concept feedback describes acceptance, not measured task success or shipped features.
 export const healthChatbotCase = {
   zh: {
-    subtitle: '讓健康疑問，更容易成為第一個 AI 提問',
     intro: '健康 2.0 App 推出 AI Chatbot 後，服務使用率僅佔整體的 2%。我結合提問紀錄、使用者訪談與概念測試，釐清使用者如何理解 AI、何時需要健康資訊，再將研究轉為兩個設計方向：App 內的建議提問，以及 Web 健康文章中的延伸問答。',
     date: '2023–2024',
     summary: [
@@ -17,7 +16,6 @@ export const healthChatbotCase = {
     problemCopy: '低使用率只是問題的起點。我先檢視上線後的提問紀錄：使用者輸入的是完整問題、身體狀況，還是單一症狀？這份分析用來辨識輸入行為，再透過訪談了解背後原因。',
     dataInsight: '模糊描述與症狀關鍵字合計約 54%。不少輸入尚未形成完整問題，提示我們需要協助使用者表達需求；但紀錄本身無法解釋未使用 AI 的原因。',
     dataNote: '資料沿用原專案提問紀錄，共 20,350 筆事件；事件數不等於使用者人數。各類佔比經四捨五入，合計可能略高於 100%。',
-    baselineNote: '2% 為原專案記錄的 App 服務使用率；與後續 Web 文章參與率分屬不同指標。',
     dataSummary: '查看提問分類與事件數',
     tableHead: ['提問類型', '輸入內容', '事件數', '佔比'],
     data: [
@@ -77,7 +75,6 @@ export const healthChatbotCase = {
     ],
   },
   en: {
-    subtitle: 'Help a health concern become a first AI question',
     intro: 'After Health 2.0 launched its App chatbot, the service accounted for only 2% of overall usage. I combined question logs, user interviews, and concept testing to understand how people perceive AI and seek health information. The research informed two directions: suggested prompts in the App and follow-up AI chat within Web articles.',
     date: '2023–2024',
     summary: [
@@ -91,7 +88,6 @@ export const healthChatbotCase = {
     problemCopy: 'Low usage was a starting signal. I examined whether inputs were complete questions, descriptions of a condition, or single symptoms. The logs revealed input patterns; interviews helped explain the reasons behind them.',
     dataInsight: 'Vague descriptions and symptom keywords made up about 54% of inputs. Many were not complete questions, suggesting an opportunity to help people express their needs. Logs alone cannot explain why others never used AI.',
     dataNote: 'Existing project logs: 20,350 events, not unique users. Rounded percentages may total slightly above 100%.',
-    baselineNote: 'The 2% App service usage figure and the later Web article engagement figure measure different behaviors.',
     dataSummary: 'View question categories and event counts',
     tableHead: ['Question type', 'Input', 'Events', 'Share'],
     data: [
