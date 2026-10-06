@@ -1,76 +1,178 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SiteFooter from './SiteFooter.jsx'
 import FittedProjectTitle from './FittedProjectTitle.jsx'
+import { healthChatbotCase } from './content/healthChatbotCase.js'
 import './health-chatbot-detail.css'
-import './health-chatbot-chart-fix.css'
-import './health-chatbot-background.css'
-import './health-chatbot-findings-layout.css'
-import './health-chatbot-hero-image.css'
 
-const findings = [
-  ['01', '分析產品數據與提問內容', '分析 AI Chatbot 的使用率、提問紀錄與內容類型，了解使用者真正關心的健康議題，以及哪些情境最容易產生提問需求，作為後續產品策略與設計方向的依據。'],
-  ['02', '使用者訪談與 Prototype 驗證', '根據研究結果建立 Prototype，邀請目標使用者進行測試，驗證提供建議 AI 提問（Prompt）、不同 AI 角色、不同使用場景中是否能降低開始對話的門檻，以及得到 AI 回應後是否有覺得獲得健康幫助。'],
-  ['03', '建立內容情境下的互動體驗', '從用戶測試中發現，大部分用戶還是很難主動提問，因此我們改從用戶旅程出發，找到用戶最可能想提問的時機點，將 AI Chatbot 改放在健康文章內，讓用戶的提問在了解健康資訊的時候自然發生，並提供文章延伸閱讀類型的 AI 提問，讓用戶可以獲得延續的閱讀體驗。'],
-  ['04', '優化 AI 提問策略', '除了調整服務入口，也重新設計 AI 建議提問的呈現方式，讓問題更貼近文章內容與使用者閱讀情境，提高點擊意願與互動品質。'],
-  ['05', '持續追蹤與迭代優化', '功能正式上線後，持續分析不同文章、不同提問內容與使用數據的表現。研究發現，不同文章對 AI 使用率有明顯影響，同時提問品質也會直接影響互動效果，因此持續優化 AI 建議問題與內容策略，提升整體產品體驗。'],
-]
-const findingsEn = [
-  ['01','Analyze product data and questions','Analyzed usage, question logs, and content types to identify the health topics and situations that most often create a need to ask.'],
-  ['02','Interview users and validate prototypes','Tested suggested prompts, AI roles, and service scenarios to learn what lowers the barrier to starting a conversation.'],
-  ['03','Create a contextual content experience','Placed the chatbot inside health articles at the moment questions naturally arise, with suggested follow-up prompts that extend the reading journey.'],
-  ['04','Improve the AI question strategy','Redesigned suggested questions to reflect article content and reading context, improving click intent and interaction quality.'],
-  ['05','Track, learn, and iterate','Continued analyzing article performance, question content, and usage data to improve prompts and the overall experience.'],
-]
+function ResearchFacts({ items }) {
+  return <dl className="chatbot-case__facts">{items.map(([label, value]) =>
+    <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+  )}</dl>
+}
 
-const chartData = [
-  ['完整健康問題', 42], ['模糊健康描述', 31], ['只輸入健康\n關鍵字（症狀）', 23], ['與健康無相關\n文字', 4],
-]
+function CaseSection({ id, number, label, title, children }) {
+  return <section id={id} className="detail-section chatbot-case__section" aria-labelledby={`${id}-title`}>
+    <div className="chatbot-case__section-heading"><span>{number} / {label}</span><h2 id={`${id}-title`}>{title}</h2></div>
+    <div className="chatbot-case__section-body">{children}</div>
+  </section>
+}
 
-const tableRows = [
-  ['完整健康問題', '使用者以完整句子描述症狀、情境或直接提出問題。', '8,482', '41.7%'],
-  ['模糊健康描述', '描述身體狀況，但尚未形成明確問題，例如「長期壓力大」、「一直睡不好」。', '6,282', '30.9%'],
-  ['健康主題／症狀關鍵字', '僅輸入疾病或症狀名稱，例如「頭痛」、「糖尿病」、「耳鳴」。', '4,683', '23.0%'],
-  ['非健康相關文字', '打招呼、感謝、聊天或與健康無關內容，例如「你好」、「謝謝」、「今天颱風假嗎」。', '791', '3.9%'],
-  ['空白輸入', '未輸入任何內容。', '112', '0.6%'],
-]
+function revealChapterLink(row, link) {
+  if (!row || !link) return
+  const rowBounds = row.getBoundingClientRect()
+  const linkBounds = link.getBoundingClientRect()
+  const overflow = linkBounds.left < rowBounds.left
+    ? linkBounds.left - rowBounds.left
+    : linkBounds.right > rowBounds.right ? linkBounds.right - rowBounds.right : 0
+  if (overflow) row.scrollTo({ left: row.scrollLeft + overflow, behavior: 'instant' })
+}
 
-const tableRowsEn = [
-  ['Complete health question', 'A complete sentence describing symptoms, context, or a direct question.', '8,482', '41.7%'],
-  ['Vague health description', 'A physical condition without a clear question, such as “long-term stress” or “poor sleep.”', '6,282', '30.9%'],
-  ['Health topic / symptom keyword', 'Only a disease or symptom name, such as “headache,” “diabetes,” or “tinnitus.”', '4,683', '23.0%'],
-  ['Non-health-related text', 'Greetings, thanks, casual conversation, or unrelated content.', '791', '3.9%'],
-  ['Blank input', 'No content entered.', '112', '0.6%'],
-]
+function CaseNavigation({ items, isEnglish }) {
+  const [activeSection, setActiveSection] = useState(items[0][0])
+  const navigationRef = useRef(null)
+  const rowRef = useRef(null)
+
+  useEffect(() => {
+    let frame = 0
+    const headings = items.map(([id]) => ({
+      id,
+      element: document.querySelector(`#${id} .chatbot-case__section-heading`),
+    }))
+    const updateActiveSection = () => {
+      frame = 0
+      const navigation = navigationRef.current
+      const styles = window.getComputedStyle(navigation)
+      // Keep the reading threshold stable while the site header slides in or out.
+      const stickyBottom = parseFloat(styles.getPropertyValue('--case-header-height'))
+        + parseFloat(styles.getPropertyValue('--case-tab-height'))
+      const readingLine = Math.max(stickyBottom, navigation.getBoundingClientRect().bottom) + 64
+      let current = items[0][0]
+      for (const { id, element } of headings) {
+        if (element && element.getBoundingClientRect().top <= readingLine) current = id
+      }
+      setActiveSection(current)
+    }
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateActiveSection)
+    }
+    scheduleUpdate()
+    window.addEventListener('scroll', scheduleUpdate, { passive: true })
+    window.addEventListener('resize', scheduleUpdate)
+    // Product images can shift the later chapter positions as they load.
+    document.addEventListener('load', scheduleUpdate, true)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', scheduleUpdate)
+      window.removeEventListener('resize', scheduleUpdate)
+      document.removeEventListener('load', scheduleUpdate, true)
+    }
+  }, [items])
+
+  useEffect(() => {
+    const row = rowRef.current
+    revealChapterLink(row, row.querySelector('[aria-current="location"]'))
+  }, [activeSection, items])
+
+  return <nav ref={navigationRef} className="chatbot-case__navigation" aria-label={isEnglish ? 'Case study sections' : '案例章節'}>
+    <div ref={rowRef} className="chatbot-case__navigation-row">
+      {items.map(([id, label], index) => <a key={id} href={`#${id}`} aria-current={activeSection === id ? 'location' : undefined} onFocus={event => {
+        const link = event.currentTarget
+        window.requestAnimationFrame(() => {
+          if (document.activeElement === link) revealChapterLink(rowRef.current, link)
+        })
+      }}>
+        <span>0{index + 1}</span>{label}
+      </a>)}
+    </div>
+  </nav>
+}
 
 export default function HealthChatbotDetail({ language = 'zh' }) {
   const isEnglish = language === 'en'
-  const findingItems = isEnglish ? findingsEn : findings
-  const localizedChartData = isEnglish ? [['Complete health question',42],['Vague health description',31],['Health keyword / symptom',23],['Unrelated text',4]] : chartData
-  const localizedTableRows = isEnglish ? tableRowsEn : tableRows
+  const copy = healthChatbotCase[isEnglish ? 'en' : 'zh']
   return <main className="project-detail chatbot-case">
     <section className="detail-intro chatbot-case__intro">
       <FittedProjectTitle>AI Chatbot UX Design</FittedProjectTitle>
+      <p className="chatbot-case__subtitle">{copy.subtitle}</p>
       <div className="detail-intro__copy">
-        <p>{isEnglish ? 'Health 2.0 launched an AI Chatbot, but it represented only 2% of total usage. The problem was not a lack of health needs; users simply did not know how to begin asking. The project examined question behavior from research through product design and validation.' : 'Health 2.0 APP 推出 AI Chatbot 服務，但實際使用率只佔整體的 2%。觀察產品使用情況後發現，真正的問題並非使用者沒有健康需求，而是不知道該如何開始提問。專案以提升 AI Chatbot 使用率為目標，重新檢視使用者提出健康問題的行為模式，從研究、產品設計到驗證。'}</p>
-        <dl><div><dt>Services</dt><dd>TVBS Health 2.0</dd></div><div><dt>My Role</dt><dd>User Research, UX Design</dd></div><div><dt>Date</dt><dd>2024–2025</dd></div></dl>
+        <p>{copy.intro}</p>
+        <dl><div><dt>Services</dt><dd>TVBS Health 2.0</dd></div><div><dt>My Role</dt><dd>User Research, UX Design</dd></div><div><dt>Date</dt><dd>{copy.date}</dd></div></dl>
       </div>
-      <div className="chatbot-case__goal"><div className="chatbot-case__goal-image" data-image-reveal><img src="/assets/project/health20-wide.jpg" alt="Health 2.0 AI Chatbot"/></div><div><small>Project Goal</small><strong>{isEnglish ? <>Increase AI Chatbot<br/>service usage</> : <>提高 AI Chatbot<br/>服務使用率</>}</strong></div></div>
+      <dl className="chatbot-case__summary">{copy.summary.map(({ value, mobileValue, label, description, mobileDescription }) => <div key={label}>
+        <dt>{label}</dt><dd>
+          <strong className={mobileValue ? 'chatbot-case__summary-full' : undefined}>{value}</strong>
+          {mobileValue && <strong className="chatbot-case__summary-compact">{mobileValue}</strong>}
+          <span className="chatbot-case__summary-full">{description}</span>
+          {mobileDescription && <span className="chatbot-case__summary-compact">{mobileDescription}</span>}
+        </dd>
+      </div>)}</dl>
+      <div className="chatbot-case__goal">
+        <div className="chatbot-case__goal-image" data-image-reveal><img src="/assets/project/health20-wide.jpg" alt={isEnglish ? 'Reading a Health 2.0 article on a phone' : '使用手機閱讀健康 2.0 文章'} /></div>
+        <div className="chatbot-case__goal-copy"><small>Project Goal</small><strong>{copy.goal}</strong></div>
+      </div>
     </section>
 
-    <section className="detail-section chatbot-case__research">
-      <h2>Research</h2>
-      <div className="chatbot-case__research-grid"><h3>Data</h3><div><p>{isEnglish ? 'I analyzed post-launch question logs to understand input completeness and health relevance, identifying the factors that shaped the AI experience.' : '為了了解 AI Chatbot 使用率偏低的原因，我先分析上線後的提問紀錄，觀察使用者輸入內容的完整程度與健康相關性，從而找出影響 AI 使用體驗的關鍵因素。'}</p><div className="chatbot-chart"><div className="chatbot-chart__scale"><span>40%</span><span>30%</span><span>20%</span><span>10%</span><span>0%</span></div><div className="chatbot-chart__bars">{localizedChartData.map(([label,value],index)=><article key={label}><div className={`${index === 0 ? 'is-primary ' : ''}${index === 3 ? 'is-muted' : ''}`} style={{'--bar-height': value / 45}}><b>{value}%</b></div><small>{label}</small></article>)}</div></div><div className="chatbot-table"><div><b>{isEnglish ? 'Category' : '類別'}</b><b>{isEnglish ? 'Description' : '說明'}</b><b>{isEnglish ? 'Events' : '事件數'}</b><b>{isEnglish ? 'Share' : '佔比'}</b></div>{localizedTableRows.map(([category,description,events,share])=><div key={category}><span>{category}</span><span>{description}</span><span>{events}</span><span>{share}</span></div>)}</div></div></div>
-    </section>
+    <CaseNavigation items={copy.navigation} isEnglish={isEnglish} />
 
-    <section className="detail-section chatbot-case__synthesis">
-      <h2>Synthesis &amp; Decision</h2>
-      <div className="chatbot-case__research-photos"><img src="/assets/detail/photo_1.jpg" alt="使用者訪談情境"/><img src="/assets/detail/photo_2.jpg" alt="使用者訪談情境"/><img src="/assets/detail/photo_3.jpg" alt="使用者訪談情境"/></div>
-      <p className="chatbot-case__lead">{isEnglish ? 'Users had health needs but struggled to turn questions sparked by an article into prompts AI could answer. The barrier was starting, not answer quality. We repositioned the chatbot as the next step after reading health information.' : '研究結果顯示，使用者並非沒有健康需求，而是不知道如何把健康文章中看見的問題轉化為可用 AI 回應的提問。真正的問題不是 AI 的回答能力，而是開始提問的門檻。因此，專案重新定位 AI Chatbot：讓它成為閱讀健康資訊後，協助使用者把疑問帶往下一步的入口。'}</p>
-      <div className="chatbot-case__findings">{findingItems.map(([number,title,text],index)=><article key={number}><span>{number}</span><div><h3>{title}</h3><p>{text}</p></div>{index === 2 && <img src="/assets/detail/selectedwork-4_2.jpg" alt="AI Chatbot inside a health article"/>}</article>)}</div>
-    </section>
+    <CaseSection id="problem" number="01" label="PROBLEM & DATA" title={copy.problemTitle}>
+      <p className="chatbot-case__body-copy">{copy.problemCopy}</p>
+      <p className="chatbot-case__note">{copy.baselineNote}</p>
+      <div className="chatbot-case__data-chart" role="img" aria-label={copy.data.map(row => `${row[0]} ${row[3]}`).join('；')}>
+        {copy.data.map(([label, , , share, value]) => <div className="chatbot-case__data-row" key={label} aria-hidden="true">
+          <span>{label}</span><div className="chatbot-case__data-track"><i style={{width: `${value / 45 * 100}%`}} /></div><b>{share}</b>
+        </div>)}
+      </div>
+      <p className="chatbot-case__insight">{copy.dataInsight}</p>
+      <p className="chatbot-case__note">{copy.dataNote}</p>
+    </CaseSection>
 
-    <section className="achievement chatbot-case__achievement"><h2>Achievement</h2><div><h3>{isEnglish ? <>After embedding the chatbot in health articles,<br/>engagement reached <b>88.7%</b>,<br/>with average dwell time up to 3:10.</> : <>健康文章導入 AI Chatbot 後，<br/>參與率最高達 <b>88.7%</b>，<br/>平均停留時間最高達 3 分 10 秒。</>}</h3><p>{isEnglish ? '(About 35% above the site-wide average)' : '（較全站平均提升約 35%）'}</p></div></section>
-    <section className="chatbot-case__ui-showcase"><div className="chatbot-case__ui-image"><picture><source media="(max-width: 800px)" srcSet="/assets/detail/chatbot_UI_mobile.jpg"/><img src="/assets/detail/chatbot_UI.jpg" alt={isEnglish ? 'Health article AI Chatbot user interface' : '健康文章 AI Chatbot 使用介面'} /></picture></div></section>
+    <CaseSection id="interviews" number="02" label="USER INTERVIEWS" title={copy.interviewTitle}>
+      <p className="chatbot-case__body-copy">{copy.interviewCopy}</p>
+      <ResearchFacts items={copy.interviewMeta} />
+      <h3 className="chatbot-case__minor-title">{copy.interviewLabel}</h3>
+      <div className="chatbot-case__interview-findings">{copy.interviewFindings.map(([title, observation, implication], index) => <article key={title}>
+        <span>0{index + 1}</span><div><h4>{title}</h4><p>{observation}</p><p className="chatbot-case__implication">{implication}</p></div>
+      </article>)}</div>
+      <p className="chatbot-case__insight">{copy.researchBridge}</p>
+    </CaseSection>
+
+    <CaseSection id="concept-test" number="03" label="CONCEPT TESTING" title={copy.conceptTitle}>
+      <p className="chatbot-case__body-copy">{copy.conceptCopy}</p>
+      <ResearchFacts items={copy.conceptMeta} />
+      <p className="chatbot-case__note">{copy.cohortNote}</p>
+      <div className="chatbot-case__concepts">
+        <div className="chatbot-case__concept-head">{copy.conceptTableHead.map(label => <span key={label}>{label}</span>)}</div>
+        {copy.concepts.map(([title, feedback, implication]) => <article key={title}><h3>{title}</h3><div><span className="chatbot-case__mobile-label">{copy.conceptTableHead[1]}</span><p>{feedback}</p></div><div><span className="chatbot-case__mobile-label">{copy.conceptTableHead[2]}</span><p>{implication}</p></div></article>)}
+      </div>
+      <p className="chatbot-case__note">{copy.conceptNote}</p>
+      <blockquote className="chatbot-case__key-finding"><p>{copy.keyFinding}</p></blockquote>
+    </CaseSection>
+
+    <CaseSection id="decisions" number="04" label="DESIGN DECISIONS" title={copy.decisionTitle}>
+      <p className="chatbot-case__body-copy">{copy.decisionCopy}</p>
+      <div className="chatbot-case__decisions">{copy.decisions.map(item => <article key={item.number}>
+        <header><span>{item.number}</span><div><h3>{item.title}</h3></div></header>
+        <div className="chatbot-case__decision-copy"><div><h4>{copy.evidenceLabel}</h4><p>{item.evidence}</p></div><div><h4>{copy.solutionLabel}</h4><p>{item.solution}</p></div></div>
+        {item.number !== '01' && <div className="chatbot-case__journey"><div><small>{copy.beforeLabel}</small><p>{item.before}</p></div><div><small>{copy.afterLabel}</small><p>{item.after}</p></div></div>}
+        {item.number === '02' && <figure className="chatbot-case__decision-showcase">
+          <img loading="lazy" src="/assets/detail/chatbot_UI_mobile.jpg" alt={copy.uiCaption} />
+        </figure>}
+        {item.number === '01' && <div className="chatbot-case__app-comparison">
+          {copy.appComparison.map(({ label, alt }, index) => <figure key={label}>
+            <figcaption>{label}</figcaption>
+            <img loading="lazy" src={`/assets/detail/chatbot-app-${index === 0 ? 'before' : 'after'}.png`} width={index === 0 ? 340 : 341} height="675" alt={alt} />
+            <p>{index === 0 ? item.before : item.after}</p>
+          </figure>)}
+        </div>}
+      </article>)}</div>
+    </CaseSection>
+
+    <CaseSection id="outcomes" number="05" label="OUTCOMES & REFLECTION" title={copy.outcomeTitle}>
+      <p className="chatbot-case__body-copy">{copy.outcomeCopy}</p>
+      <dl className="chatbot-case__metrics">{copy.metrics.map(([value, label]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+      <p className="chatbot-case__note">{copy.metricNote}</p>
+      <div className="chatbot-case__reflections">{copy.reflections.map(([title, text]) => <article key={title}><h4>{title}</h4><p>{text}</p></article>)}</div>
+    </CaseSection>
     <SiteFooter />
   </main>
 }

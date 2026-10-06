@@ -217,14 +217,22 @@ function App() {
     window.history.scrollRestoration = 'manual'
     window.location.assign(`${window.location.pathname}${hash}`)
   }
-  useEffect(() => { const pop = () => setIsDetail(new URLSearchParams(window.location.search).get('project') === 'group-chat'); window.addEventListener('popstate', pop); return () => window.removeEventListener('popstate', pop) }, [])
+  useEffect(() => {
+    // In-page chapter links also create history entries. Keep every project
+    // detail mounted when moving between its anchors or using browser Back.
+    const pop = () => setIsDetail(Boolean(new URLSearchParams(window.location.search).get('project')))
+    window.addEventListener('popstate', pop)
+    return () => window.removeEventListener('popstate', pop)
+  }, [])
 
   useEffect(() => {
     if (!isDetail) return
     window.history.scrollRestoration = 'manual'
     const previousBehavior = document.documentElement.style.scrollBehavior
     document.documentElement.style.scrollBehavior = 'auto'
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+    const chapter = projectSlug === 'health-chatbot' && document.getElementById(window.location.hash.slice(1))
+    if (chapter) chapter.scrollIntoView({ block: 'start', behavior: 'auto' })
+    else window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
     document.documentElement.style.scrollBehavior = previousBehavior
   }, [isDetail])
 
